@@ -1,0 +1,187 @@
+{
+    "results": [
+        {
+            "id": 592479,
+            "title": "Kale and Quinoa Salad with Black Beans",
+            "image": "https://spoonacular.com/recipeImages/592479-312x231.jpg",
+            "imageType": "jpg",
+            "nutrition": [
+                {
+                    "title": "Vitamin B2",
+                    "amount": 0.208066,
+                    "unit": "mg"
+                },
+                {
+                    "title": "Vitamin B6",
+                    "amount": 0.382652,
+                    "unit": "mg"
+                }
+            ]
+        },
+        {
+            "id": 547775,
+            "title": "Creamy Avocado Pasta",
+            "image": "https://spoonacular.com/recipeImages/547775-312x231.jpg",
+            "imageType": "jpg",
+            "nutrition": [
+                {
+                    "title": "Vitamin B2",
+                    "amount": 0.321609,
+                    "unit": "mg"
+                },
+                {
+                    "title": "Vitamin B6",
+                    "amount": 0.689093,
+                    "unit": "mg"
+                }
+            ]
+        },
+        {
+            "id": 818941,
+            "title": "Avocado Toast with Eggs, Spinach, and Tomatoes",
+            "image": "https://spoonacular.com/recipeImages/818941-312x231.jpg",
+            "imageType": "jpg",
+            "nutrition": [
+                {
+                    "title": "Vitamin B2",
+                    "amount": 0.53777,
+                    "unit": "mg"
+                },
+                {
+                    "title": "Vitamin B6",
+                    "amount": 0.382055,
+                    "unit": "mg"
+                }
+            ]
+        },
+        {
+            "id": 495111,
+            "title": "Citrus Sesame Kale",
+            "image": "https://spoonacular.com/recipeImages/495111-312x231.jpg",
+            "imageType": "jpg",
+            "nutrition": [
+                {
+                    "title": "Vitamin B2",
+                    "amount": 0.118723,
+                    "unit": "mg"
+                },
+                {
+                    "title": "Vitamin B6",
+                    "amount": 0.254644,
+                    "unit": "mg"
+                }
+            ]
+        },
+        {
+            "id": 689502,
+            "title": "Melt In Your Mouth Kale Salad",
+            "image": "https://spoonacular.com/recipeImages/689502-312x231.jpg",
+            "imageType": "jpg",
+            "nutrition": [
+                {
+                    "title": "Vitamin B2",
+                    "amount": 0.231973,
+                    "unit": "mg"
+                },
+                {
+                    "title": "Vitamin B6",
+                    "amount": 0.295755,
+                    "unit": "mg"
+                }
+            ]
+        },
+        {
+            "id": 837136,
+            "title": "Kale Pineapple Smoothie",
+            "image": "https://spoonacular.com/recipeImages/837136-312x231.jpg",
+            "imageType": "jpg",
+            "nutrition": [
+                {
+                    "title": "Vitamin B2",
+                    "amount": 0.474229,
+                    "unit": "mg"
+                },
+                {
+                    "title": "Vitamin B6",
+                    "amount": 1.0551,
+                    "unit": "mg"
+                }
+            ]
+        },
+        {
+            "id": 582897,
+            "title": "Mexican Salad with Lime Dressing",
+            "image": "https://spoonacular.com/recipeImages/582897-312x231.jpg",
+            "imageType": "jpg",
+            "nutrition": [
+                {
+                    "title": "Vitamin B2",
+                    "amount": 0.217181,
+                    "unit": "mg"
+                },
+                {
+                    "title": "Vitamin B6",
+                    "amount": 0.352876,
+                    "unit": "mg"
+                }
+            ]
+        },
+        {
+            "id": 777037,
+            "title": "Weekly Meal Plan #17",
+            "image": "https://spoonacular.com/recipeImages/777037-312x231.jpg",
+            "imageType": "jpg",
+            "nutrition": [
+                {
+                    "title": "Vitamin B2",
+                    "amount": 0.148049,
+                    "unit": "mg"
+                },
+                {
+                    "title": "Vitamin B6",
+                    "amount": 0.219528,
+                    "unit": "mg"
+                }
+            ]
+        },
+        {
+            "id": 801710,
+            "title": "Matcha Green Tea and Pineapple Smoothie",
+            "image": "https://spoonacular.com/recipeImages/801710-312x231.jpg",
+            "imageType": "jpg",
+            "nutrition": [
+                {
+                    "title": "Vitamin B2",
+                    "amount": 0.463817,
+                    "unit": "mg"
+                },
+                {
+                    "title": "Vitamin B6",
+                    "amount": 1.0862,
+                    "unit": "mg"
+                }
+            ]
+        },
+        {
+            "id": 695486,
+            "title": "Green Smoothie",
+            "image": "https://spoonacular.com/recipeImages/695486-312x231.jpg",
+            "imageType": "jpg",
+            "nutrition": [
+                {
+                    "title": "Vitamin B2",
+                    "amount": 0.221135,
+                    "unit": "mg"
+                },
+                {
+                    "title": "Vitamin B6",
+                    "amount": 0.693295,
+                    "unit": "mg"
+                }
+            ]
+        }
+    ],
+    "offset": 0,
+    "number": 10,
+    "totalResults": 370926
+}

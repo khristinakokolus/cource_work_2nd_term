@@ -1,0 +1,40 @@
+{
+    "meals": [
+        {
+            "id": 678487,
+            "title": "Breakfast Sandwich with Egg, Avocado, Tomato, and Swiss Cheese",
+            "readyInMinutes": 5,
+            "servings": 1,
+            "image": "Breakfast-Sandwich-with-Egg--Avocado--Tomato--and-Swiss-Cheese-678487.jpg",
+            "imageUrls": [
+                "Breakfast-Sandwich-with-Egg--Avocado--Tomato--and-Swiss-Cheese-678487.jpg"
+            ]
+        },
+        {
+            "id": 653682,
+            "title": "One Pot Veggie Quinoa",
+            "readyInMinutes": 45,
+            "servings": 4,
+            "image": "One-Pot-Veggie-Quinoa-653682.jpg",
+            "imageUrls": [
+                "One-Pot-Veggie-Quinoa-653682.jpg"
+            ]
+        },
+        {
+            "id": 666484,
+            "title": "Mushroom Risotto",
+            "readyInMinutes": 45,
+            "servings": 6,
+            "image": "Mushroom-Risotto-666484.jpg",
+            "imageUrls": [
+                "Mushroom-Risotto-666484.jpg"
+            ]
+        }
+    ],
+    "nutrients": {
+        "calories": 1966.04,
+        "protein": 56.74,
+        "fat": 110.61,
+        "carbohydrates": 201.12
+    }
+}
