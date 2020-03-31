@@ -1,1 +1,1 @@
-# cource_work_2nd_term
+My UCU project.
