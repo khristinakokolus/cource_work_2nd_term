@@ -1,16 +1,16 @@
 ## Project name:
 
-### Description:
+## Description:
 
-### Table of contents:
+## Table of contents:
 
-### Installation:
+## Installation:
 
-### Usage:
+## Usage:
 
-### Contributing:
+## Contributing:
 
-### Credit:
+## Credit:
 
-### Licence:
+## Licence:
 
