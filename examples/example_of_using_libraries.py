@@ -64,6 +64,17 @@ def data_analysis(data):
     return info_lst
 
 
+def plot_info(info_lst):
+    """
+    Makes a diagram from information.
+    """
+    data_nutrition = pd.DataFrame(dict(Substance=info_lst[1],
+                                       Amount=info_lst[2]))
+    data = px.bar(data_nutrition, x='Substance', y='Amount',
+                  color="Substance")
+    return data
+
+
 server = Flask(__name__)
 
 
@@ -75,25 +86,28 @@ def index():
     return 'Testing Flask app'
 
 
-app = dash.Dash(
-    __name__,
-    server=server,
-    routes_pathname_prefix='/dash/'
-)
+def app(data, info_lst):
+    """
+    Returns the example of Dash app.
+    """
+    app = dash.Dash(
+        __name__,
+        server=server,
+        routes_pathname_prefix='/dash/'
+    )
+    app.layout = html.Div(children=[
+        html.H1(children="Example of using Dash"),
+        html.H2(children=f'The dish is {info_lst[0]}'),
+        html.H2(children="All the substances are in mg"),
+        dcc.Graph(id='example-graph', figure=data)
+    ])
+    return app
 
-data = read_url(BASE_URL, HEADERS, RECIPE_ID)
-info_lst = data_analysis(data)
-data_nutrition = pd.DataFrame(dict(Substance=info_lst[1],
-                                   Amount=info_lst[2]))
-data = px.bar(data_nutrition, x='Substance', y='Amount',
-              color="Substance")
-
-app.layout = html.Div(children=[
-    html.H1(children="Example of using Dash"),
-    html.H2(children=f'The dish is {info_lst[0]}'),
-    html.H2(children="All the substances are in mg"),
-    dcc.Graph(id='example-graph', figure=data)
-])
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    information = read_url(BASE_URL, HEADERS, RECIPE_ID)
+    info_lst = data_analysis(information)
+    data = plot_info(info_lst)
+    new_app = app(data, info_lst)
+    new_app.run_server(debug=True)
+
