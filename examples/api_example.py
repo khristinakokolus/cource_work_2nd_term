@@ -2,8 +2,8 @@
 import json
 import requests
 
-# in the files meal_generate_example.json, products_example.json
-# upc_products_example.json, recipes_example.json, complex_example.json
+# in the files meal_generate_example.json, 
+# recipes_example.json, complex_example.json
 # are the examples of function calls with different parameters
 # to get more information about them and their use to call the function
 # visit https://spoonacular.com/food-api/docs
