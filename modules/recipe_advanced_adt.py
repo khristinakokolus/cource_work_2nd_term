@@ -1,6 +1,5 @@
 """Module that represents ADT for recipes analysis"""
 from modules.arrays import Array, DynamicArray
-BASE_URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"
 
 
 class RecipeAdvanced:
