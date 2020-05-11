@@ -24,7 +24,7 @@ class Recipe:
         """
         Gets needed recipe info from json.
         """
-        if self.data["results"] == [] or self.data["totalResults"] == 0:
+        if self.data == []:
             self._recipes = None
         elif self.query == 'mealplans/generate':
             for recipe in self.data['meals']:
