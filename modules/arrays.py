@@ -119,6 +119,8 @@ class DynamicArray:
 
         Return element at index.
         """
+        if not 0 <= index < self._num_elements:
+            raise IndexError('invalid index')
         return self._array[index]
 
     def append(self, item):
