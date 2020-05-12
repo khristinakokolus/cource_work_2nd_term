@@ -16,5 +16,5 @@ DIETS = ["None", "gluten free", "ketogenic", "vegetarian", "lacto vegetarian", "
 DEFAULT_MAIN_INFO = ["veryHealthy", "cheap", "veryPopular", "healthScore", "readyInMinutes", "sourceUrl",
                      "cuisines", "dishTypes", "diets"]
 
-MAIN_SUBSTANCES = ["Fat", "Saturated Fat", "Carbohydrates",
+MAIN_SUBSTANCES = ["Fat", "Saturated Fat", "Carbohydrates", "Net Carbohydrates",
                    "Sugar", "Sodium", "Protein", "Fiber"]
