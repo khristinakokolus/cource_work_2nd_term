@@ -1,7 +1,7 @@
 """
 Module that represents the needed data structures for the investigation.
 That is mostly based on the materials from the labs.
-Using the book Data Structures and
+Also using the book Data Structures and
 Algorithms Using Python – R. Necaise.
 """
 import ctypes
@@ -12,7 +12,8 @@ class Array:
     def __init__(self, size):
         """(Array, int)
 
-        Creates the array structure using the ctypes module.
+        Creates the array structure using the
+        ctypes module.
         """
         self._size = size
         self._elements = (ctypes.py_object * size)()
@@ -28,8 +29,10 @@ class Array:
     def __getitem__(self, index):
         """(Array, int) -> str
 
-        Gets the contents of the index element.
+        Gets the content of the index element.
         """
+        assert 0 <= index < len(self),\
+            "Array subscript out of range"
         return self._elements[index]
 
     def __setitem__(self, index, value):
@@ -37,6 +40,8 @@ class Array:
 
         Puts the value in the array element at index position.
         """
+        assert 0 <= index < len(self),\
+            "Array subscript out of range"
         self._elements[index] = value
 
     def clear(self, value):
@@ -57,7 +62,7 @@ class Array:
         return _ArrayIterator(self._elements)
 
     def __str__(self):
-        """
+        """(Array)
         Returns the printable representation of array.
         """
         str_array = "["
@@ -101,60 +106,61 @@ class DynamicArray:
     def __init__(self):
         """(DynamicArray)
 
-        Create an empty array.
+        Creates an empty array.
         """
         self._num_elements = 0
         self._capacity = 1
-        self._array = self.make_array(self._capacity)
+        self._array = self._make_array(self._capacity)
 
     def __len__(self):
         """(DynamicArray)
 
-        Return number of elements stored in the array.
+        Returns number of elements stored in the array.
         """
         return self._num_elements
 
     def __getitem__(self, index):
-        """(DynamicArray)
+        """(DynamicArray, int)
 
-        Return element at index.
+        Returns element at index.
         """
         if not 0 <= index < self._num_elements:
             raise IndexError('invalid index')
         return self._array[index]
 
     def append(self, item):
-        """(DynamicArray)
+        """(DynamicArray, str)
 
         Add object to end of the array.
         """
         if self._num_elements == self._capacity:
-            self.resize(2 * self._capacity)
+            self._resize(2 * self._capacity)
         self._array[self._num_elements] = item
         self._num_elements += 1
 
-    def resize(self, capacity):
-        """(DynamicArray)
+    def _resize(self, capacity):
+        """(DynamicArray, int)
 
         Resizes internal array to the certain capacity.
         """
-        bigger_array = self.make_array(capacity)
+        bigger_array = self._make_array(capacity)
         for i in range(self._num_elements):
             bigger_array[i] = self._array[i]
         self._array = bigger_array
         self._capacity = capacity
 
-    def make_array(self, capacity):
-        """(DynamicArray)
+    def _make_array(self, capacity):
+        """(DynamicArray, int) -> Array
 
         Return new array with capacity.
         """
         return (capacity * ctypes.py_object)()
 
     def remove(self, value):
-        """(DynamicArray)
+        """(DynamicArray, str)
 
-        Remove first occurrence of value( or  raise ValueError).
+        Remove the first occurrence of value.
+        If thee is no such value raises ValueError.
         """
         for i in range(self._num_elements):
             if self._array[i] == value:
@@ -167,7 +173,7 @@ class DynamicArray:
         raise ValueError("value not found")
 
     def __str__(self):
-        """
+        """(DynamicArray) -> str
         Returns printable representation of DynamicArray.
         """
         str_dynamic_array = "["
