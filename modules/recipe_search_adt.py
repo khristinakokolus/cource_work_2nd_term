@@ -3,13 +3,14 @@ Module that represents the ADT for getting recipe data
 from json and helping to select needed info
 due to the certain search.
 """
-from modules.arrays import DynamicArray
+from modules.arrays import Array, DynamicArray
+
 
 # Works with data from API with such requests as
 # complexSearch, mealplans/generate
 
 
-class Recipe:
+class RecipeSearch:
     """Gets needed information about recipes"""
     def __init__(self, query, data):
         """(Recipe, str, str)
@@ -24,8 +25,6 @@ class Recipe:
         """(Recipe)
         Gets needed recipe info from json.
         """
-        if self.data == []:
-            self._recipes = None
         if self.query == 'mealplans/generate':
             for recipe in self.data['meals']:
                 res_id = recipe['id']
@@ -39,12 +38,12 @@ class Recipe:
                 meals_info = (res_id, res_title)
                 self._recipes.append(meals_info)
 
-    def recipes(self):
+    def amount_of_recipes(self):
         """(Recipe)
 
-        Returns the whole collected information.
+        Returns the amount of recipes.
         """
-        return self._recipes
+        return len(self._recipes)
 
     def recipe_names(self):
         """(Recipe)
@@ -70,6 +69,38 @@ class Recipe:
             recipe_ids.append(recipe_id)
         return recipe_ids
 
+    def recipe_selector(self):
+        """
+        Selects recipes.
+        """
+        recipes = DynamicArray()
+        res_names = self.recipe_names()
+        k = 0
+        for recipe in res_names:
+            if recipe not in recipes:
+                recipes.append(recipe)
+                k += 1
+            if k == 5:
+                break
+        return recipes
+
+    def delete_recipes(self):
+        """
+        Deletes recipes.
+        """
+        if len(self._recipes) > 5:
+            new_recipes = Array(5)
+            recipes = self.recipe_selector()
+            k = 0
+            for item in self._recipes:
+                if item[1] in recipes:
+                    new_recipes[k] = item
+                    recipes.remove(item[1])
+                    k += 1
+                if len(recipes) == 0:
+                    break
+                self._recipes = new_recipes
+
     def nutrients_per_day(self):
         """(Recipe)
 
@@ -84,4 +115,3 @@ class Recipe:
             val_pair = (key, value)
             nutrients_per_day.append(val_pair)
         return nutrients_per_day
-
