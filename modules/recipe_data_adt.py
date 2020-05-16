@@ -5,9 +5,9 @@ from modules.arrays import Array, DynamicArray
 class RecipeData:
     """Represents data container class for the recipe analysis"""
     def __init__(self, data, recipes, amount_of_recipes):
-        """(RecipeAdvanced, str, array, int)
+        """(RecipeData, str, array, int)
 
-        Creates a new objects of RecipeAdvanced class.
+        Creates a new object of RecipeData class.
         """
         self.data = data
         self._recipes = recipes
@@ -17,9 +17,10 @@ class RecipeData:
         self._arr_size = amount_of_recipes
 
     def add_data(self, main_information):
-        """(RecipeAdvanced, list)
+        """(RecipeData, list)
 
-        Adds the all needed information about all the recipes.
+        Adds the all needed information about
+        all the recipes.
         """
         for i in range(len(self.data)):
             ingredients = self.get_ingredients(i)
@@ -30,7 +31,7 @@ class RecipeData:
             self._ingredients.append(ingredients)
 
     def recipe_nutrition(self, index):
-        """(RecipeAdvanced, int)
+        """(RecipeData, int)
 
         Gets nutrition of the one recipe.
         """
@@ -45,9 +46,9 @@ class RecipeData:
         return temp_array
 
     def recipes_main_information(self, main_info, index):
-        """(RecipeAdvanced, list, int)
+        """(RecipeData, list, int)
 
-        Gets the main needed info about recipes.
+        Gets the main needed information about one recipe.
         """
         temp_array = DynamicArray()
         for key, value in self.data[index].items():
@@ -57,7 +58,7 @@ class RecipeData:
         return temp_array
 
     def get_ingredients(self, index):
-        """(RecipeAdvanced, int)
+        """(RecipeData, int)
 
         Gets the ingredients of recipes.
         """
@@ -67,20 +68,32 @@ class RecipeData:
             name = item['name']
             amount = item['amount']
             unit = item['unit']
-            ingr_pair = (name, amount, unit)
+            ingr_pair = str(amount) + " " + str(unit) + " " + str(name)
             temp_array.append(ingr_pair)
         return temp_array
 
-    def recipes(self):
+    def ingredients(self):
+        """(RecipeData) -> DynamicArray
+
+        Returns the array of arrays
+        with the ingredients of all
+        dishes.
         """
-        Returns the array of recipes.
+        return self._ingredients
+
+    def recipes(self):
+        """(RecipeData) -> DynamicArray
+
+        Returns the array of the names
+        of recipes.
         """
         return self._recipes
 
     def healthiness(self):
-        """
-        Returns the list of boolean values
-        of the healthiness of the recipes.
+        """(RecipeData) -> Array
+
+        Returns the array of values healthy or not healthy
+        that correspond to the recipes.
         """
         healthy_array = Array(self._arr_size)
         k = 0
@@ -94,10 +107,15 @@ class RecipeData:
         return healthy_array
 
     def cheap(self):
+        """(RecipeData) -> Array
+
+        Returns the array of values cheap or not cheap
+        of all recipes.
+        """
         cheap_array = Array(self._arr_size)
         k = 0
         for item in self._main_info:
-            if item[0][1] is False:
+            if item[1][1] is False:
                 value = "not cheap to cook"
             else:
                 value = "cheap to cook"
@@ -106,10 +124,15 @@ class RecipeData:
         return cheap_array
 
     def is_popular(self):
+        """(RecipeData) -> Array
+
+        Returns the array of values popular or not popular
+        of all recipes.
+        """
         popularity_array = Array(self._arr_size)
         k = 0
         for item in self._main_info:
-            if item[0][1] is False:
+            if item[2][1] is False:
                 value = "not popular"
             else:
                 value = "popular"
@@ -118,6 +141,11 @@ class RecipeData:
         return popularity_array
 
     def healthy_score(self):
+        """(RecipeData) -> Array
+
+        Returns the array of values of health score
+        of all recipes.
+        """
         healthy_array = Array(self._arr_size)
         k = 0
         for item in self._main_info:
@@ -126,14 +154,25 @@ class RecipeData:
         return healthy_array
 
     def time_cooking(self):
+        """(RecipeData) -> Array
+
+        Returns the array of values of cooking time
+        of all recipes.
+        """
         time_array = Array(self._arr_size)
         k = 0
         for item in self._main_info:
-            time_array[k] = item[4][1]
+            value = str(item[4][1]) + " minutes"
+            time_array[k] = value
             k += 1
         return time_array
 
     def get_recipe_urls(self):
+        """(RecipeData) -> Array
+
+        Returns the array of urls
+        of all recipes.
+        """
         urls_array = Array(self._arr_size)
         k = 0
         for item in self._main_info:
@@ -142,45 +181,86 @@ class RecipeData:
         return urls_array
 
     def search_cuisines(self):
+        """(RecipeData) -> Array
+
+        Returns the array of cuisines
+        of all recipes.
+        """
         cuisines_array = Array(self._arr_size)
         k = 0
         for item in self._main_info:
-            cuisines_array[k] = item[6][1]
+            if item[6][1] == []:
+                cuisines_array[k] = "no information"
+            else:
+                cuisines_array[k] = item[6][1]
             k += 1
         return cuisines_array
 
     def search_types(self):
+        """(RecipeData) -> Array
+
+        Returns the array of dish types
+        of all recipes.
+        """
         types_array = Array(self._arr_size)
         k = 0
         for item in self._main_info:
-            types_array[k] = item[7][1]
+            if item[7][1] == []:
+                types_array[k] = "no information"
+            else:
+                types_array[k] = item[7][1]
             k += 1
         return types_array
 
     def search_diets(self):
+        """(RecipeData) -> Array
+
+        Returns the array of diets
+        of all recipes.
+        """
         diets_array = Array(self._arr_size)
         k = 0
         for item in self._main_info:
-            diets_array[k] = item[8][1]
+            if item[8][1] == []:
+                diets_array[k] = "no information"
+            else:
+                diets_array[k] = item[8][1]
             k += 1
         return diets_array
 
     def calories(self):
+        """(RecipeData) -> Array
+
+        Returns the array of the calories amount
+        of all recipes.
+        """
         calories_array = Array(self._arr_size)
         k = 0
         for item in self._nutrients:
-            calories_array[k] = item[0][1]
+            value = str(item[0][1]) + " cal"
+            calories_array[k] = value
             k += 1
         return calories_array
 
     def count_main_substances(self, main_substances, index):
+        """(RecipeData, list, int) -> int
+
+        Returns the amount of main nutrients in the
+        dish.
+        """
         count = 0
         for nutrient in self._nutrients[index]:
             if nutrient[0] in main_substances:
                 count += 1
         return count
 
-    def main_substances_nutrition_percents(self, main_substances, index):
+    def main_nutrients_percents(self, main_substances, index):
+        """(RecipeData, list, int) -> Array
+
+        Returns the array of two arrays that consist
+        of the names of main nutrients with amounts
+        and the percents of daily needs.
+        """
         information = Array(2)
         length = self.count_main_substances(main_substances, index)
         main_nutrients = Array(length)
@@ -202,7 +282,13 @@ class RecipeData:
         information[1] = main_percents
         return information
 
-    def other_substances_nutrition_percents(self, main_substances, index):
+    def other_nutrients_percents(self, main_substances, index):
+        """(RecipeData, list, int) -> Array
+
+        Returns the array of two arrays that consist
+        of the names of vitamins, minerals, etc with amounts
+        and the percents of daily needs.
+        """
         information_other = Array(2)
         length = len(self._nutrients[index]) - 1 -\
                  self.count_main_substances(main_substances, index)
@@ -216,17 +302,10 @@ class RecipeData:
                 value = self._nutrients[index][i][1]
                 unit = self._nutrients[index][i][2]
                 percent = int(self._nutrients[index][i][3])
-                new_subs = new_subs = name + " " + str(value) + unit
+                new_subs = name + " " + str(value) + unit
                 other_nutrients[k] = new_subs
                 other_percents[k] = percent
                 k += 1
         information_other[0] = other_nutrients
         information_other[1] = other_percents
         return information_other
-
-    def ingredients_data_per_recipe(self, index):
-        ingredients_data = DynamicArray()
-        for item in self._ingredients[index]:
-            value = item[0] + str(item[1]) + item[2]
-            ingredients_data.append(value)
-        return ingredients_data
