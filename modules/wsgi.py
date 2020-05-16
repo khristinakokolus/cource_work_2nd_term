@@ -1,3 +1,4 @@
+"""Module that represents the connection between flask and dash"""
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from werkzeug.serving import run_simple
 
