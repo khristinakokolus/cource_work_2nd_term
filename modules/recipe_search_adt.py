@@ -4,7 +4,7 @@ from json and helping to select needed info
 due to the certain search.
 """
 from modules.arrays import Array, DynamicArray
-
+import random
 
 # Works with data from API with such requests as
 # complexSearch, mealplans/generate
@@ -13,7 +13,7 @@ from modules.arrays import Array, DynamicArray
 class RecipeSearch:
     """Gets needed information about recipes"""
     def __init__(self, query, data):
-        """(Recipe, str, str)
+        """(RecipeSearch, str, str)
 
         Represents recipes info.
         """
@@ -22,33 +22,31 @@ class RecipeSearch:
         self._recipes = DynamicArray()
 
     def get_recipes(self):
-        """(Recipe)
-        Gets needed recipe info from json.
+        """(RecipeSearch)
+
+        Gets needed recipe information from dictionary.
         """
         if self.query == 'mealplans/generate':
-            for recipe in self.data['meals']:
-                res_id = recipe['id']
-                res_name = recipe['title']
-                meals_info = (res_id, res_name)
-                self._recipes.append(meals_info)
+            data = self.data['meals']
         elif self.query == 'complexSearch':
-            for recipe in self.data['results']:
-                res_id = recipe['id']
-                res_title = recipe['title']
-                meals_info = (res_id, res_title)
-                self._recipes.append(meals_info)
+            data = self.data['results']
+        for recipe in data:
+            res_id = recipe['id']
+            res_name = recipe['title']
+            meals_info = (res_id, res_name)
+            self._recipes.append(meals_info)
 
     def amount_of_recipes(self):
-        """(Recipe)
+        """(RecipeSearch) -> int
 
         Returns the amount of recipes.
         """
         return len(self._recipes)
 
     def recipe_names(self):
-        """(Recipe)
+        """(RecipeSearch) -> DynamicArray
 
-        Returns the list with the
+        Returns the array with the
         recipe names.
         """
         recipe_names = DynamicArray()
@@ -58,9 +56,9 @@ class RecipeSearch:
         return recipe_names
 
     def recipe_ids(self):
-        """(Recipe)
+        """(RecipeSearch) -> DynamicArray
 
-        Returns the list with the
+        Returns the array with the
         recipe id numbers.
         """
         recipe_ids = DynamicArray()
@@ -69,49 +67,32 @@ class RecipeSearch:
             recipe_ids.append(recipe_id)
         return recipe_ids
 
-    def recipe_selector(self):
-        """
-        Selects recipes.
-        """
-        recipes = DynamicArray()
-        res_names = self.recipe_names()
-        k = 0
-        for recipe in res_names:
-            if recipe not in recipes:
-                recipes.append(recipe)
-                k += 1
-            if k == 5:
-                break
-        return recipes
+    def recipe_selector(self, number):
+        """(RecipeSearch, int)
 
-    def delete_recipes(self):
+        Selects recipes in the random way.
         """
-        Deletes recipes.
-        """
-        if len(self._recipes) > 5:
-            new_recipes = Array(5)
-            recipes = self.recipe_selector()
-            k = 0
-            for item in self._recipes:
-                if item[1] in recipes:
-                    new_recipes[k] = item
-                    recipes.remove(item[1])
-                    k += 1
-                if len(recipes) == 0:
-                    break
-                self._recipes = new_recipes
+        new_recipes = DynamicArray()
+        while len(new_recipes) != number:
+            value = random.choice(self._recipes)
+            if value not in new_recipes:
+                new_recipes.append(value)
+        self._recipes = new_recipes
 
     def nutrients_per_day(self):
-        """(Recipe)
+        """(RecipeSearch) -> Array
 
-        Returns the amount of nutrients for the
-        mealsplan search.
+        Returns the array with amount of nutrients for the
+        mealplans search.
         """
         if self.query != 'mealplans/generate':
             return 'This information cannot be obtained from such a request'
-        nutrients_per_day = DynamicArray()
+        nutrients_per_day = Array(3)
         dct_nutrition = self.data['nutrients']
+        i = 0
         for key, value in dct_nutrition.items():
-            val_pair = (key, value)
-            nutrients_per_day.append(val_pair)
+            if key != "calories":
+                val_pair = (key, value)
+                nutrients_per_day[i] = val_pair
+                i += 1
         return nutrients_per_day
