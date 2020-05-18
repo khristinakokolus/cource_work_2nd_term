@@ -73,24 +73,39 @@ Then you shound run wsgi.py to see the work of the program.
 ## Usage example:
 
 After following the link of the site you will see:
-![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/home.png)
 
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/home.png)
 
 After that you can choose Complex Search or Meal Generator
 
 If you chose Complex Search, you will see:
 
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/complex.png)
 
 Here is example of search query:
 
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/complexsearch.png)
 
 Example of output data:
+
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/res1.png)
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/res2.png)
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/res3.png)
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/res4.png)
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/res5.png)
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/res6.png)
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/res7.png)
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/res8.png)
 
 
 If you chose Meal Generator, you will see:
 
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/meal_gen.png)
 
 Here is example of search query:
+![]()
+![]()
+![]()
 
 
 Example of output data:
