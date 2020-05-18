@@ -3,8 +3,8 @@ Module that represents the ADT for getting recipe data
 from json and helping to select needed info
 due to the certain search.
 """
-from modules.arrays import Array, DynamicArray
 import random
+from modules.arrays import Array, DynamicArray
 
 # Works with data from API with such requests as
 # complexSearch, mealplans/generate
