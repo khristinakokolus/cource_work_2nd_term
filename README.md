@@ -10,8 +10,8 @@ Check it now [Recipe Selector and Analyzer](http://recipeanalyser.pythonanywhere
 
 Recipe selector and analyzer uses information from Spoonacular API and provides such information as:
 
-- comparative characteristics of recipes:
---healthiness of selected recipes;
+* comparative characteristics of recipes:
+  * healthiness of selected recipes;
 - creation of the web app
 - visualisation of the recipes' data
 
