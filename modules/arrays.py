@@ -128,14 +128,14 @@ class DynamicArray:
             raise IndexError('invalid index')
         return self._array[index]
 
-    def append(self, item):
+    def append(self, value):
         """(DynamicArray, str)
 
         Add object to end of the array.
         """
         if self._num_elements == self._capacity:
             self._resize(2 * self._capacity)
-        self._array[self._num_elements] = item
+        self._array[self._num_elements] = value
         self._num_elements += 1
 
     def _resize(self, capacity):
