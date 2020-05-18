@@ -1,0 +1,427 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome to Recipe Selector and Analyzer’s documentation! &#8212; Recipe Selector and Analyzer 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-arrays">
+<span id="welcome-to-recipe-selector-and-analyzer-s-documentation"></span><h1>Welcome to Recipe Selector and Analyzer’s documentation!<a class="headerlink" href="#module-arrays" title="Permalink to this headline">¶</a></h1>
+<p>Module arrays represents the needed data structures for the investigation.
+That is mostly based on the materials from the book Data Structures and
+Algorithms Using Python – R. Necaise.</p>
+<dl class="py class">
+<dt id="arrays.Array">
+<em class="property">class </em><code class="sig-prename descclassname">arrays.</code><code class="sig-name descname">Array</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">size</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arrays.html#Array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arrays.Array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an array with size elements.</p>
+<dl class="py method">
+<dt id="arrays.Array.clear">
+<code class="sig-name descname">clear</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arrays.html#Array.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arrays.Array.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Array, value)</p>
+<p>Clears the array by setting each element
+to the given value.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="arrays.DynamicArray">
+<em class="property">class </em><code class="sig-prename descclassname">arrays.</code><code class="sig-name descname">DynamicArray</code><a class="reference internal" href="_modules/arrays.html#DynamicArray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arrays.DynamicArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dynamic array class akin to a simplified Python list.</p>
+<dl class="py method">
+<dt id="arrays.DynamicArray.append">
+<code class="sig-name descname">append</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arrays.html#DynamicArray.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arrays.DynamicArray.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>(DynamicArray, str)</p>
+<p>Adds object to end of the array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="arrays.DynamicArray.remove">
+<code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arrays.html#DynamicArray.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arrays.DynamicArray.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>(DynamicArray, str)</p>
+<p>Removes the first occurrence of value.
+If thee is no such value raises ValueError.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-recipe_search_adt"></span><p>Module recipe_search_adt represents the ADT for getting recipe data
+from json and helps to select needed information
+due to the certain search.</p>
+<dl class="py class">
+<dt id="recipe_search_adt.RecipeSearch">
+<em class="property">class </em><code class="sig-prename descclassname">recipe_search_adt.</code><code class="sig-name descname">RecipeSearch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em>, <em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_search_adt.html#RecipeSearch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_search_adt.RecipeSearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets needed information about recipes.</p>
+<dl class="py method">
+<dt id="recipe_search_adt.RecipeSearch.amount_of_recipes">
+<code class="sig-name descname">amount_of_recipes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_search_adt.html#RecipeSearch.amount_of_recipes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_search_adt.RecipeSearch.amount_of_recipes" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeSearch) -&gt; int</p>
+<p>Returns the amount of recipes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_search_adt.RecipeSearch.get_recipes">
+<code class="sig-name descname">get_recipes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_search_adt.html#RecipeSearch.get_recipes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_search_adt.RecipeSearch.get_recipes" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeSearch)</p>
+<p>Gets needed recipe information from dictionary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_search_adt.RecipeSearch.nutrients_per_day">
+<code class="sig-name descname">nutrients_per_day</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_search_adt.html#RecipeSearch.nutrients_per_day"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_search_adt.RecipeSearch.nutrients_per_day" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeSearch) -&gt; Array</p>
+<p>Returns the array with amount of nutrients for the
+mealplans search.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_search_adt.RecipeSearch.recipe_ids">
+<code class="sig-name descname">recipe_ids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_search_adt.html#RecipeSearch.recipe_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_search_adt.RecipeSearch.recipe_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeSearch) -&gt; DynamicArray</p>
+<p>Returns the array with the
+recipes’ id numbers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_search_adt.RecipeSearch.recipe_names">
+<code class="sig-name descname">recipe_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_search_adt.html#RecipeSearch.recipe_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_search_adt.RecipeSearch.recipe_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeSearch) -&gt; DynamicArray</p>
+<p>Returns the array with the
+recipes’ names.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_search_adt.RecipeSearch.recipe_selector">
+<code class="sig-name descname">recipe_selector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">number</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_search_adt.html#RecipeSearch.recipe_selector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_search_adt.RecipeSearch.recipe_selector" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeSearch, int)</p>
+<p>Selects recipes in the random way.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-recipe_data_adt"></span><p>Module recipe_data_adt represents ADT for getting more information about recipes.</p>
+<dl class="py class">
+<dt id="recipe_data_adt.RecipeData">
+<em class="property">class </em><code class="sig-prename descclassname">recipe_data_adt.</code><code class="sig-name descname">RecipeData</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">recipes</span></em>, <em class="sig-param"><span class="n">amount_of_recipes</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents data container class for the recipe analysis.</p>
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.add_data">
+<code class="sig-name descname">add_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">main_information</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.add_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.add_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData, list)</p>
+<p>Adds all needed information about
+all the recipes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.calories">
+<code class="sig-name descname">calories</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.calories"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.calories" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData) -&gt; Array</p>
+<p>Returns the array with the numbers of calories in
+all recipes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.cheap">
+<code class="sig-name descname">cheap</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.cheap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.cheap" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData) -&gt; Array</p>
+<p>Returns the array with values cheap or not cheap
+to cook a certain dish.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.count_main_nutrients">
+<code class="sig-name descname">count_main_nutrients</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">main_nutrients</span></em>, <em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.count_main_nutrients"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.count_main_nutrients" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData, list, int) -&gt; int</p>
+<p>Returns the amount of main nutrients in the
+dish.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.get_ingredients">
+<code class="sig-name descname">get_ingredients</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.get_ingredients"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.get_ingredients" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData, int) -&gt; DynamicArray</p>
+<p>Gets the information about the ingredients of recipes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.get_recipe_urls">
+<code class="sig-name descname">get_recipe_urls</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.get_recipe_urls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.get_recipe_urls" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData) -&gt; Array</p>
+<p>Returns the array of urls
+of all recipes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.healthiness">
+<code class="sig-name descname">healthiness</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.healthiness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.healthiness" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData) -&gt; Array</p>
+<p>Returns the array with values of the healthiness
+of all recipes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.healthy_score">
+<code class="sig-name descname">healthy_score</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.healthy_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.healthy_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData) -&gt; Array</p>
+<p>Returns the array with values of health score
+of all recipes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.ingredients">
+<code class="sig-name descname">ingredients</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.ingredients"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.ingredients" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData) -&gt; DynamicArray</p>
+<p>Returns the array of arrays
+with the ingredients of all
+dishes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.is_popular">
+<code class="sig-name descname">is_popular</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.is_popular"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.is_popular" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData) -&gt; Array</p>
+<p>Returns the array with values of popularity
+of all recipes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.main_nutrients_percents">
+<code class="sig-name descname">main_nutrients_percents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">main_nutrients</span></em>, <em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.main_nutrients_percents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.main_nutrients_percents" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData, list, int) -&gt; Array</p>
+<p>Returns the array of two arrays. First consists
+of the names of main nutrients with amounts
+and second consists of the percents of daily needs
+of those nutrients.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.other_nutrients_percents">
+<code class="sig-name descname">other_nutrients_percents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">main_nutrients</span></em>, <em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.other_nutrients_percents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.other_nutrients_percents" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData, list, int) -&gt; Array</p>
+<p>Returns the array of two arrays. First consists
+of the names of vitamins, minerals, etc with amounts
+and second consists of the percents of daily needs
+of those vitamins and minerals.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.recipe_nutrition">
+<code class="sig-name descname">recipe_nutrition</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.recipe_nutrition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.recipe_nutrition" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData, int) -&gt; DynamicArray</p>
+<p>Gets nutrition information of the one recipe.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.recipes">
+<code class="sig-name descname">recipes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.recipes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.recipes" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData) -&gt; DynamicArray</p>
+<p>Returns the array of the names
+of all recipes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.recipes_main_information">
+<code class="sig-name descname">recipes_main_information</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">main_info</span></em>, <em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.recipes_main_information"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.recipes_main_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData, list, int) -&gt; DynamicArray</p>
+<p>Gets the main needed information about one recipe.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.search_cuisines">
+<code class="sig-name descname">search_cuisines</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.search_cuisines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.search_cuisines" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData) -&gt; Array</p>
+<p>Returns the array of cuisines
+of all recipes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.search_diets">
+<code class="sig-name descname">search_diets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.search_diets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.search_diets" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData) -&gt; Array</p>
+<p>Returns the array of diets
+of all recipes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.search_types">
+<code class="sig-name descname">search_types</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.search_types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.search_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData) -&gt; Array</p>
+<p>Returns the array of dish types
+of all recipes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="recipe_data_adt.RecipeData.time_cooking">
+<code class="sig-name descname">time_cooking</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/recipe_data_adt.html#RecipeData.time_cooking"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#recipe_data_adt.RecipeData.time_cooking" title="Permalink to this definition">¶</a></dt>
+<dd><p>(RecipeData) -&gt; Array</p>
+<p>Returns the array with values of cooking time
+of all recipes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-main_functions"></span><p>Module main_functions represents main functions for getting and analyzing data</p>
+<dl class="py function">
+<dt id="main_functions.check_data">
+<code class="sig-prename descclassname">main_functions.</code><code class="sig-name descname">check_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_functions.html#check_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_functions.check_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>(dict) -&gt; str</p>
+<p>Checks if the data from API is valid.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="main_functions.check_input">
+<code class="sig-prename descclassname">main_functions.</code><code class="sig-name descname">check_input</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">add_url</span></em>, <em class="sig-param"><span class="n">more_options</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_functions.html#check_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_functions.check_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>(str, list)</p>
+<p>Checks the input of the user.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="main_functions.data_from_recipe_ids">
+<code class="sig-prename descclassname">main_functions.</code><code class="sig-name descname">data_from_recipe_ids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">recipes_data</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_functions.html#data_from_recipe_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_functions.data_from_recipe_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>(DynamicArray) -&gt; list</p>
+<p>Function that uses recipes’ ids to get
+information for recipes’ analysis.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="main_functions.get_data_from_url">
+<code class="sig-prename descclassname">main_functions.</code><code class="sig-name descname">get_data_from_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">base_url</span></em>, <em class="sig-param"><span class="n">add_url</span></em>, <em class="sig-param"><span class="n">option</span></em>, <em class="sig-param"><span class="n">more_options</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_functions.html#get_data_from_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_functions.get_data_from_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>(str, str, str, list) -&gt; dict</p>
+<p>Gets information using API.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="main_functions.ingredients_table">
+<code class="sig-prename descclassname">main_functions.</code><code class="sig-name descname">ingredients_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">recipes</span></em>, <em class="sig-param"><span class="n">ingredients</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_functions.html#ingredients_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_functions.ingredients_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>(DynamicArray, DynamicArray) -&gt; Figure</p>
+<p>Function that makes a table from the information
+about the ingredients of the dishes.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="main_functions.plot_nutrition">
+<code class="sig-prename descclassname">main_functions.</code><code class="sig-name descname">plot_nutrition</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">main_subs</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main_functions.html#plot_nutrition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#main_functions.plot_nutrition" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Array, str) -&gt; Figure</p>
+<p>Function that makes bar chart from the
+nutrition composition information.</p>
+</dd></dl>
+
+<span class="target" id="module-complex_dashboard"></span><p>Module complex_dashboard represents complex dashboard.</p>
+<dl class="py function">
+<dt id="complex_dashboard.recipes_complex_data">
+<code class="sig-prename descclassname">complex_dashboard.</code><code class="sig-name descname">recipes_complex_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">number</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/complex_dashboard.html#recipes_complex_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#complex_dashboard.recipes_complex_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>(dict, int) -&gt; RecipeData</p>
+<p>Function that gets needed information and
+returns one for the further analysis.</p>
+</dd></dl>
+
+<span class="target" id="module-meal_gen_dashboard"></span><p>Module meal_gen_dashboard represents meal generating dashboard.</p>
+<dl class="py function">
+<dt id="meal_gen_dashboard.pie_chart_mealgenerator">
+<code class="sig-prename descclassname">meal_gen_dashboard.</code><code class="sig-name descname">pie_chart_mealgenerator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">information</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/meal_gen_dashboard.html#pie_chart_mealgenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#meal_gen_dashboard.pie_chart_mealgenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Array) -&gt; Figure</p>
+<p>Function that creates a pie chart for the meal
+generator.</p>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Recipe Selector and Analyzer</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Khristina Kokolus.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
