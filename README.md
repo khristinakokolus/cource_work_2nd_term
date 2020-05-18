@@ -73,7 +73,7 @@ Then you shound run wsgi.py to see the work of the program.
 ## Usage example:
 
 After following the link of the site you will see:
-![]https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/home.png
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/home.png)
 
 
 After that you can choose Complex Search or Meal Generator
