@@ -11,7 +11,7 @@ BASE_URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/
 
 headers = {
     'x-rapidapi-host': "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-    'x-rapidapi-key': "6ddebd8e17msh86d16ad8e805388p1c8e43jsnfe820c5470dd"
+    'x-rapidapi-key': "..."
     }
 
 
