@@ -13,12 +13,19 @@ There are a lot of recipes but to find one that is really great is hard. Recipe 
 ## Table of contents:
 
 -[Input/Output data](#Input/Output data)
+
 -[Program Structure](#Program Structure)
+
 -[Prerequisities](#Prerequisities)
+
 -[Installation](#Installation)
+
 -[Usage example](#Usage example)
+
 -[Contributing](#Contributing)
+
 -[Credit](#Credit)
+
 -[Licence](#Licence)
 
 ## Input/Output data
@@ -103,14 +110,20 @@ If you chose Meal Generator, you will see:
 ![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/meal_gen.png)
 
 Here is example of search query:
-![]()
-![]()
-![]()
+
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/mealgenerator.png)
 
 
 Example of output data:
 
-
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/meal1.png)
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/meal2.png)
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/meal3.png)
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/meal4.png)
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/meal5.png)
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/meal6.png)
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/meal7.png)
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/meal8.png)
 
 ## Contributing:
 
