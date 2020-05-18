@@ -192,7 +192,8 @@ class RecipeData:
             if item[6][1] == []:
                 cuisines_array[k] = "no information"
             else:
-                cuisines_array[k] = item[6][1]
+                value = ", ".join(item[6][1])
+                cuisines_array[k] = value
             k += 1
         return cuisines_array
 
@@ -208,7 +209,8 @@ class RecipeData:
             if item[7][1] == []:
                 types_array[k] = "no information"
             else:
-                types_array[k] = item[7][1]
+                value = ", ".join(item[7][1])
+                types_array[k] = value
             k += 1
         return types_array
 
@@ -224,7 +226,8 @@ class RecipeData:
             if item[8][1] == []:
                 diets_array[k] = "no information"
             else:
-                diets_array[k] = item[8][1]
+                value = ", ".join(item[8][1])
+                diets_array[k] = value
             k += 1
         return diets_array
 
@@ -242,7 +245,7 @@ class RecipeData:
             k += 1
         return calories_array
 
-    def count_main_substances(self, main_substances, index):
+    def count_main_nutrients(self, main_nutrients, index):
         """(RecipeData, list, int) -> int
 
         Returns the amount of main nutrients in the
@@ -250,11 +253,11 @@ class RecipeData:
         """
         count = 0
         for nutrient in self._nutrients[index]:
-            if nutrient[0] in main_substances:
+            if nutrient[0] in main_nutrients:
                 count += 1
         return count
 
-    def main_nutrients_percents(self, main_substances, index):
+    def main_nutrients_percents(self, main_nutrients, index):
         """(RecipeData, list, int) -> Array
 
         Returns the array of two arrays that consist
@@ -262,27 +265,27 @@ class RecipeData:
         and the percents of daily needs.
         """
         information = Array(2)
-        length = self.count_main_substances(main_substances, index)
-        main_nutrients = Array(length)
+        length = self.count_main_nutrients(main_nutrients, index)
+        main_nutrition = Array(length)
         main_percents = Array(length)
         k = 0
         for i in range(len(self._nutrients[index])):
-            if self._nutrients[index][i][0] in main_substances:
+            if self._nutrients[index][i][0] in main_nutrients:
                 name = self._nutrients[index][i][0]
                 value = self._nutrients[index][i][1]
                 unit = self._nutrients[index][i][2]
                 percent = int(self._nutrients[index][i][3])
                 new_subs = name + " " + str(value) + unit
-                main_nutrients[k] = new_subs
+                main_nutrition[k] = new_subs
                 main_percents[k] = percent
                 k += 1
             if k == length:
                 break
-        information[0] = main_nutrients
+        information[0] = main_nutrition
         information[1] = main_percents
         return information
 
-    def other_nutrients_percents(self, main_substances, index):
+    def other_nutrients_percents(self, main_nutrients, index):
         """(RecipeData, list, int) -> Array
 
         Returns the array of two arrays that consist
@@ -291,12 +294,12 @@ class RecipeData:
         """
         information_other = Array(2)
         length = len(self._nutrients[index]) - 1 -\
-                 self.count_main_substances(main_substances, index)
+                 self.count_main_nutrients(main_nutrients, index)
         other_nutrients = Array(length)
         other_percents = Array(length)
         k = 0
         for i in range(len(self._nutrients[index])):
-            if self._nutrients[index][i][0] not in main_substances and\
+            if self._nutrients[index][i][0] not in main_nutrients and\
                     i != 0:
                 name = self._nutrients[index][i][0]
                 value = self._nutrients[index][i][1]
