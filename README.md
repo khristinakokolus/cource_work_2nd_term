@@ -8,20 +8,66 @@ Check it now [Recipe Selector and Analyzer](http://recipeanalyser.pythonanywhere
 
 ## Description:
 
-Recipe selector and analyzer uses information from Spoonacular API and provides such information as:
-
-* comparative characteristics of recipes:
-  * healthiness of selected recipes;
-- creation of the web app
-- visualisation of the recipes' data
+There are a lot of recipes but to find one that is really great is hard. Recipe Selector and Analyzer is created to solve this problem. It gives a great opportunity to find the dreamed recipe. There are a lot of recipes in the google but there is information only from what and how to cook the dish, but Recipe Selector and Analyzercan help to different recipes and to get the full information about them. To search the recipes you can use two oprions: Complex Search and Meal Generator. Complex search is a search that helps to find recipes based on the user's wishes. Meal Generator is used to generate recipes for the day. The information that user can get includes comparison characteristics of the recipes and nutrition composition.
 
 ## Table of contents:
 
-## Installation:
+## Input/Output data
 
-## Usage:
+The input data for the Complex Search: main ingredient, ingredients to include and to exclude, cuisine, diet, dish type, the number of recipes to output. It is ESSENTIAL to input the main ingredient and number of recipes, but other input is optional.
+
+The input data for the Meal Generator: number of calories, diet, ingredients to exclude. User сan not even enter anything and press the button to get the results. Using this option user can get only three recipes.
+
+
+The output data of the Recipe Selector and Analyzer for Complex Search and Meal Generator are rather the same:
+* table with comparative characteristics of selected recipes:
+  * healthiness;
+  * health score;
+  * popularity;
+  * cheap to cook or not;
+  * cooking time;
+  * number of calories;
+  * cuisines they belong to;
+  * diets they belong to;
+  * dish types they belong to;
+* table with the ingredients you need for a portion of the dishes separately;
+* bar charts with all recipes' nutrition composition that provide their analysis;
+* all recipes' links;
+
+If user uses Meal Generator, there is also displayed the pie chart with the the comparison of fats, carbohydrates and protein in dishes per day.
+
+## Program Structure
+
+
+## Prerequisities
+If you want to run the program locally you need install such libraries:
+
+`pip install requests`
+`pip install flask`
+`pip install dash`
+`pip install plotly`
+`pip install pandas`
+
+Also you need to get an API key on [Rapid API](https://rapidapi.com/spoonacular/api/recipe-food-nutrition)
+
+## Installation:
+To use you need only:
+
+`git clone https://github.com/khristinakokolus/cource_work_2nd_term.git`
+
+Then you shound run wsgi.py to see the work of the program.
+
+## Usage example:
 
 ## Contributing:
+
+Please refer to project's style and contribution guidelines for submitting patches and additions. In general, the "fork-and-pull" Git workflow.
+
+1.Fork the repo on GitHub
+2.Clone the project to your own machine
+3.Commit changes to your own branch
+4.Push your work back up to your fork
+5.Submit a Pull request so that we can review your changes
 
 ## Credit:
 - Khrystyna Kokolus, Ukrainian Catholic University
