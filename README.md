@@ -43,9 +43,13 @@ If user uses Meal Generator, there is also displayed the pie chart with the the 
 If you want to run the program locally you need install such libraries:
 
 `pip install requests`
+
 `pip install flask`
+
 `pip install dash`
+
 `pip install plotly`
+
 `pip install pandas`
 
 Also you need to get an API key on [Rapid API](https://rapidapi.com/spoonacular/api/recipe-food-nutrition)
