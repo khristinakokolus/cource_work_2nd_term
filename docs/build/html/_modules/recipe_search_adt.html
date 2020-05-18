@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>recipe_search_adt &#8212; Recipe Selector and Analyzer 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for recipe_search_adt</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module recipe_search_adt represents the ADT for getting recipe data</span>
+<span class="sd">from json and helps to select needed information</span>
+<span class="sd">due to the certain search.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">arrays</span> <span class="kn">import</span> <span class="n">Array</span><span class="p">,</span> <span class="n">DynamicArray</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># Works with data from API with such requests as</span>
+<span class="c1"># complexSearch, mealplans/generate</span>
+
+
+<div class="viewcode-block" id="RecipeSearch"><a class="viewcode-back" href="../index.html#recipe_search_adt.RecipeSearch">[docs]</a><span class="k">class</span> <span class="nc">RecipeSearch</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Gets needed information about recipes&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeSearch, str, str)</span>
+
+<span class="sd">        Represents recipes information.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="n">query</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_recipes</span> <span class="o">=</span> <span class="n">DynamicArray</span><span class="p">()</span>
+
+<div class="viewcode-block" id="RecipeSearch.get_recipes"><a class="viewcode-back" href="../index.html#recipe_search_adt.RecipeSearch.get_recipes">[docs]</a>    <span class="k">def</span> <span class="nf">get_recipes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeSearch)</span>
+
+<span class="sd">        Gets needed recipe information from dictionary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span> <span class="o">==</span> <span class="s1">&#39;mealplans/generate&#39;</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;meals&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span> <span class="o">==</span> <span class="s1">&#39;complexSearch&#39;</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">recipe</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">res_id</span> <span class="o">=</span> <span class="n">recipe</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+            <span class="n">res_name</span> <span class="o">=</span> <span class="n">recipe</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
+            <span class="n">meals_info</span> <span class="o">=</span> <span class="p">(</span><span class="n">res_id</span><span class="p">,</span> <span class="n">res_name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_recipes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">meals_info</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RecipeSearch.amount_of_recipes"><a class="viewcode-back" href="../index.html#recipe_search_adt.RecipeSearch.amount_of_recipes">[docs]</a>    <span class="k">def</span> <span class="nf">amount_of_recipes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeSearch) -&gt; int</span>
+
+<span class="sd">        Returns the amount of recipes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_recipes</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RecipeSearch.recipe_names"><a class="viewcode-back" href="../index.html#recipe_search_adt.RecipeSearch.recipe_names">[docs]</a>    <span class="k">def</span> <span class="nf">recipe_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeSearch) -&gt; DynamicArray</span>
+
+<span class="sd">        Returns the array with the</span>
+<span class="sd">        recipes&#39; names.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">recipe_names</span> <span class="o">=</span> <span class="n">DynamicArray</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">recipe</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recipes</span><span class="p">:</span>
+            <span class="n">recipe_name</span> <span class="o">=</span> <span class="n">recipe</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">recipe_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">recipe_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">recipe_names</span></div>
+
+<div class="viewcode-block" id="RecipeSearch.recipe_ids"><a class="viewcode-back" href="../index.html#recipe_search_adt.RecipeSearch.recipe_ids">[docs]</a>    <span class="k">def</span> <span class="nf">recipe_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeSearch) -&gt; DynamicArray</span>
+
+<span class="sd">        Returns the array with the</span>
+<span class="sd">        recipes&#39; id numbers.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">recipe_ids</span> <span class="o">=</span> <span class="n">DynamicArray</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">recipe</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recipes</span><span class="p">:</span>
+            <span class="n">recipe_id</span> <span class="o">=</span> <span class="n">recipe</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">recipe_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">recipe_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">recipe_ids</span></div>
+
+<div class="viewcode-block" id="RecipeSearch.recipe_selector"><a class="viewcode-back" href="../index.html#recipe_search_adt.RecipeSearch.recipe_selector">[docs]</a>    <span class="k">def</span> <span class="nf">recipe_selector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeSearch, int)</span>
+
+<span class="sd">        Selects recipes in the random way.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">new_recipes</span> <span class="o">=</span> <span class="n">DynamicArray</span><span class="p">()</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_recipes</span><span class="p">)</span> <span class="o">!=</span> <span class="n">number</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_recipes</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">new_recipes</span><span class="p">:</span>
+                <span class="n">new_recipes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_recipes</span> <span class="o">=</span> <span class="n">new_recipes</span></div>
+
+<div class="viewcode-block" id="RecipeSearch.nutrients_per_day"><a class="viewcode-back" href="../index.html#recipe_search_adt.RecipeSearch.nutrients_per_day">[docs]</a>    <span class="k">def</span> <span class="nf">nutrients_per_day</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeSearch) -&gt; Array</span>
+
+<span class="sd">        Returns the array with amount of nutrients for the</span>
+<span class="sd">        mealplans search.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span> <span class="o">!=</span> <span class="s1">&#39;mealplans/generate&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;This information cannot be obtained from such a request&#39;</span>
+        <span class="n">nutrients_per_day</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">dct_nutrition</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;nutrients&#39;</span><span class="p">]</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">dct_nutrition</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">!=</span> <span class="s2">&quot;calories&quot;</span><span class="p">:</span>
+                <span class="n">val_pair</span> <span class="o">=</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                <span class="n">nutrients_per_day</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">val_pair</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">nutrients_per_day</span></div></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Recipe Selector and Analyzer</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Khristina Kokolus.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

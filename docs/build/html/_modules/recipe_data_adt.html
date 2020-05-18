@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>recipe_data_adt &#8212; Recipe Selector and Analyzer 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for recipe_data_adt</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module recipe_data_adt represents ADT for getting more information about recipes&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">arrays</span> <span class="kn">import</span> <span class="n">Array</span><span class="p">,</span> <span class="n">DynamicArray</span>
+
+
+<div class="viewcode-block" id="RecipeData"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData">[docs]</a><span class="k">class</span> <span class="nc">RecipeData</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Represents data container class for the recipe analysis&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">recipes</span><span class="p">,</span> <span class="n">amount_of_recipes</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData, str, array, int)</span>
+
+<span class="sd">        Creates a new object of RecipeData class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_recipes</span> <span class="o">=</span> <span class="n">recipes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_main_info</span> <span class="o">=</span> <span class="n">DynamicArray</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span> <span class="o">=</span> <span class="n">DynamicArray</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ingredients</span> <span class="o">=</span> <span class="n">DynamicArray</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_arr_size</span> <span class="o">=</span> <span class="n">amount_of_recipes</span>
+
+<div class="viewcode-block" id="RecipeData.add_data"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.add_data">[docs]</a>    <span class="k">def</span> <span class="nf">add_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_information</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData, list)</span>
+
+<span class="sd">        Adds all needed information about</span>
+<span class="sd">        all the recipes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)):</span>
+            <span class="n">ingredients</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_ingredients</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">nutrients</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recipe_nutrition</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">main_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recipes_main_information</span><span class="p">(</span><span class="n">main_information</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nutrients</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_main_info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">main_info</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ingredients</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ingredients</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RecipeData.recipe_nutrition"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.recipe_nutrition">[docs]</a>    <span class="k">def</span> <span class="nf">recipe_nutrition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData, int) -&gt; DynamicArray</span>
+
+<span class="sd">        Gets nutrition information of the one recipe.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">temp_array</span> <span class="o">=</span> <span class="n">DynamicArray</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">nutrients</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s1">&#39;nutrition&#39;</span><span class="p">][</span><span class="s1">&#39;nutrients&#39;</span><span class="p">]:</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="n">nutrients</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">nutrients</span><span class="p">[</span><span class="s1">&#39;amount&#39;</span><span class="p">]</span>
+            <span class="n">unit</span> <span class="o">=</span> <span class="n">nutrients</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">]</span>
+            <span class="n">daily_needs</span> <span class="o">=</span> <span class="n">nutrients</span><span class="p">[</span><span class="s2">&quot;percentOfDailyNeeds&quot;</span><span class="p">]</span>
+            <span class="n">nutrients_pair</span> <span class="o">=</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">daily_needs</span><span class="p">)</span>
+            <span class="n">temp_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nutrients_pair</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">temp_array</span></div>
+
+<div class="viewcode-block" id="RecipeData.recipes_main_information"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.recipes_main_information">[docs]</a>    <span class="k">def</span> <span class="nf">recipes_main_information</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_info</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData, list, int) -&gt; DynamicArray</span>
+
+<span class="sd">        Gets the main needed information about one recipe.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">temp_array</span> <span class="o">=</span> <span class="n">DynamicArray</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">main_info</span><span class="p">:</span>
+                <span class="n">val_pair</span> <span class="o">=</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                <span class="n">temp_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val_pair</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">temp_array</span></div>
+
+<div class="viewcode-block" id="RecipeData.get_ingredients"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.get_ingredients">[docs]</a>    <span class="k">def</span> <span class="nf">get_ingredients</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData, int) -&gt; DynamicArray</span>
+
+<span class="sd">        Gets the information about the ingredients of recipes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">temp_array</span> <span class="o">=</span> <span class="n">DynamicArray</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s1">&#39;nutrition&#39;</span><span class="p">][</span><span class="s1">&#39;ingredients&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+            <span class="n">amount</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;amount&#39;</span><span class="p">]</span>
+            <span class="n">unit</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">]</span>
+            <span class="n">ingr_pair</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">temp_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ingr_pair</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">temp_array</span></div>
+
+<div class="viewcode-block" id="RecipeData.ingredients"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.ingredients">[docs]</a>    <span class="k">def</span> <span class="nf">ingredients</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData) -&gt; DynamicArray</span>
+
+<span class="sd">        Returns the array of arrays</span>
+<span class="sd">        with the ingredients of all</span>
+<span class="sd">        dishes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ingredients</span></div>
+
+<div class="viewcode-block" id="RecipeData.recipes"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.recipes">[docs]</a>    <span class="k">def</span> <span class="nf">recipes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData) -&gt; DynamicArray</span>
+
+<span class="sd">        Returns the array of the names</span>
+<span class="sd">        of all recipes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recipes</span></div>
+
+<div class="viewcode-block" id="RecipeData.healthiness"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.healthiness">[docs]</a>    <span class="k">def</span> <span class="nf">healthiness</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData) -&gt; Array</span>
+
+<span class="sd">        Returns the array with values of the healthiness</span>
+<span class="sd">        of all recipes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">healthy_array</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_arr_size</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main_info</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;not healthy&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;healthy&quot;</span>
+            <span class="n">healthy_array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">healthy_array</span></div>
+
+<div class="viewcode-block" id="RecipeData.cheap"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.cheap">[docs]</a>    <span class="k">def</span> <span class="nf">cheap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData) -&gt; Array</span>
+
+<span class="sd">        Returns the array with values cheap or not cheap</span>
+<span class="sd">        to cook a certain dish.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cheap_array</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_arr_size</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main_info</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;not cheap to cook&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;cheap to cook&quot;</span>
+            <span class="n">cheap_array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">cheap_array</span></div>
+
+<div class="viewcode-block" id="RecipeData.is_popular"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.is_popular">[docs]</a>    <span class="k">def</span> <span class="nf">is_popular</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData) -&gt; Array</span>
+
+<span class="sd">        Returns the array with values of popularity</span>
+<span class="sd">        of all recipes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">popularity_array</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_arr_size</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main_info</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;not popular&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;popular&quot;</span>
+            <span class="n">popularity_array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">popularity_array</span></div>
+
+<div class="viewcode-block" id="RecipeData.healthy_score"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.healthy_score">[docs]</a>    <span class="k">def</span> <span class="nf">healthy_score</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData) -&gt; Array</span>
+
+<span class="sd">        Returns the array with values of health score</span>
+<span class="sd">        of all recipes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">healthy_array</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_arr_size</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main_info</span><span class="p">:</span>
+            <span class="n">healthy_array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">healthy_array</span></div>
+
+<div class="viewcode-block" id="RecipeData.time_cooking"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.time_cooking">[docs]</a>    <span class="k">def</span> <span class="nf">time_cooking</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData) -&gt; Array</span>
+
+<span class="sd">        Returns the array with values of cooking time</span>
+<span class="sd">        of all recipes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">time_array</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_arr_size</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main_info</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; minutes&quot;</span>
+            <span class="n">time_array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">time_array</span></div>
+
+<div class="viewcode-block" id="RecipeData.get_recipe_urls"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.get_recipe_urls">[docs]</a>    <span class="k">def</span> <span class="nf">get_recipe_urls</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData) -&gt; Array</span>
+
+<span class="sd">        Returns the array of urls</span>
+<span class="sd">        of all recipes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">urls_array</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_arr_size</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main_info</span><span class="p">:</span>
+            <span class="n">urls_array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">urls_array</span></div>
+
+<div class="viewcode-block" id="RecipeData.search_cuisines"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.search_cuisines">[docs]</a>    <span class="k">def</span> <span class="nf">search_cuisines</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData) -&gt; Array</span>
+
+<span class="sd">        Returns the array of cuisines</span>
+<span class="sd">        of all recipes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cuisines_array</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_arr_size</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main_info</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="p">[]:</span>
+                <span class="n">cuisines_array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;no information&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">cuisines_array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">cuisines_array</span></div>
+
+<div class="viewcode-block" id="RecipeData.search_types"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.search_types">[docs]</a>    <span class="k">def</span> <span class="nf">search_types</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData) -&gt; Array</span>
+
+<span class="sd">        Returns the array of dish types</span>
+<span class="sd">        of all recipes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">types_array</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_arr_size</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main_info</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="p">[]:</span>
+                <span class="n">types_array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;no information&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">7</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">types_array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">types_array</span></div>
+
+<div class="viewcode-block" id="RecipeData.search_diets"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.search_diets">[docs]</a>    <span class="k">def</span> <span class="nf">search_diets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData) -&gt; Array</span>
+
+<span class="sd">        Returns the array of diets</span>
+<span class="sd">        of all recipes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">diets_array</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_arr_size</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main_info</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">8</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="p">[]:</span>
+                <span class="n">diets_array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;no information&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">8</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">diets_array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">diets_array</span></div>
+
+<div class="viewcode-block" id="RecipeData.calories"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.calories">[docs]</a>    <span class="k">def</span> <span class="nf">calories</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData) -&gt; Array</span>
+
+<span class="sd">        Returns the array with the numbers of calories in</span>
+<span class="sd">        all recipes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">calories_array</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_arr_size</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; cal&quot;</span>
+            <span class="n">calories_array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">calories_array</span></div>
+
+<div class="viewcode-block" id="RecipeData.count_main_nutrients"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.count_main_nutrients">[docs]</a>    <span class="k">def</span> <span class="nf">count_main_nutrients</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_nutrients</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData, list, int) -&gt; int</span>
+
+<span class="sd">        Returns the amount of main nutrients in the</span>
+<span class="sd">        dish.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">nutrient</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span><span class="p">[</span><span class="n">index</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">nutrient</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">main_nutrients</span><span class="p">:</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">count</span></div>
+
+<div class="viewcode-block" id="RecipeData.main_nutrients_percents"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.main_nutrients_percents">[docs]</a>    <span class="k">def</span> <span class="nf">main_nutrients_percents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_nutrients</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData, list, int) -&gt; Array</span>
+
+<span class="sd">        Returns the array of two arrays. First consists</span>
+<span class="sd">        of the names of main nutrients with amounts</span>
+<span class="sd">        and second consists of the percents of daily needs</span>
+<span class="sd">        of those nutrients.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">information</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">count_main_nutrients</span><span class="p">(</span><span class="n">main_nutrients</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+        <span class="n">main_nutrition</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+        <span class="n">main_percents</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span><span class="p">[</span><span class="n">index</span><span class="p">])):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">main_nutrients</span><span class="p">:</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">percent</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span>
+                <span class="n">new_subs</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="n">unit</span>
+                <span class="n">main_nutrition</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_subs</span>
+                <span class="n">main_percents</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">percent</span>
+                <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">length</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="n">information</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_nutrition</span>
+        <span class="n">information</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_percents</span>
+        <span class="k">return</span> <span class="n">information</span></div>
+
+<div class="viewcode-block" id="RecipeData.other_nutrients_percents"><a class="viewcode-back" href="../index.html#recipe_data_adt.RecipeData.other_nutrients_percents">[docs]</a>    <span class="k">def</span> <span class="nf">other_nutrients_percents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_nutrients</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(RecipeData, list, int) -&gt; Array</span>
+
+<span class="sd">        Returns the array of two arrays. First consists</span>
+<span class="sd">        of the names of vitamins, minerals, etc with amounts</span>
+<span class="sd">        and second consists of the percents of daily needs</span>
+<span class="sd">        of those vitamins and minerals.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">information_other</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span><span class="p">[</span><span class="n">index</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span>\
+                 <span class="bp">self</span><span class="o">.</span><span class="n">count_main_nutrients</span><span class="p">(</span><span class="n">main_nutrients</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+        <span class="n">other_nutrients</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+        <span class="n">other_percents</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span><span class="p">[</span><span class="n">index</span><span class="p">])):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">main_nutrients</span> <span class="ow">and</span>\
+                    <span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">percent</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_nutrients</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span>
+                <span class="n">new_subs</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="n">unit</span>
+                <span class="n">other_nutrients</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_subs</span>
+                <span class="n">other_percents</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">percent</span>
+                <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">information_other</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">other_nutrients</span>
+        <span class="n">information_other</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">other_percents</span>
+        <span class="k">return</span> <span class="n">information_other</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Recipe Selector and Analyzer</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Khristina Kokolus.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

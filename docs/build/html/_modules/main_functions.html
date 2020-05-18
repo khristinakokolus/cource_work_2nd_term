@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>main_functions &#8212; Recipe Selector and Analyzer 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for main_functions</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module main_functions represents main functions for getting and analyzing data&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">default_information</span>
+<span class="kn">import</span> <span class="nn">errors</span>
+
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/&quot;</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;x-rapidapi-host&#39;</span><span class="p">:</span> <span class="s2">&quot;spoonacular-recipe-food-nutrition-v1.p.rapidapi.com&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;x-rapidapi-key&#39;</span><span class="p">:</span> <span class="s2">&quot;6ddebd8e17msh86d16ad8e805388p1c8e43jsnfe820c5470dd&quot;</span>
+    <span class="p">}</span>
+
+
+<div class="viewcode-block" id="check_input"><a class="viewcode-back" href="../index.html#main_functions.check_input">[docs]</a><span class="k">def</span> <span class="nf">check_input</span><span class="p">(</span><span class="n">add_url</span><span class="p">,</span> <span class="n">more_options</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    (str, list)</span>
+
+<span class="sd">    Checks the input of the user.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">add_url</span> <span class="o">==</span> <span class="n">default_information</span><span class="o">.</span><span class="n">DEFAULT_COMPLEX_URL</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;,&quot;</span> <span class="ow">in</span> <span class="n">more_options</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="s2">&quot;mistake&quot;</span>
+        <span class="k">elif</span> <span class="n">more_options</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">more_options</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">more_options</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">more_options</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">more_options</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">more_options</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">more_options</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">more_options</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">more_options</span>
+    <span class="k">elif</span> <span class="n">add_url</span> <span class="o">==</span> <span class="n">default_information</span><span class="o">.</span><span class="n">DEFAULT_MEAL_PLANNER_URL</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">more_options</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">more_options</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">4000</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">(</span><span class="n">more_options</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">500</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;mistake&quot;</span>
+        <span class="k">elif</span> <span class="n">more_options</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">more_options</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">more_options</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">more_options</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">more_options</span></div>
+
+
+<div class="viewcode-block" id="get_data_from_url"><a class="viewcode-back" href="../index.html#main_functions.get_data_from_url">[docs]</a><span class="k">def</span> <span class="nf">get_data_from_url</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">add_url</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">more_options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    (str, str, str, list) -&gt; dict</span>
+
+<span class="sd">    Gets information using API.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">add_url</span> <span class="o">!=</span> <span class="s2">&quot;information&quot;</span><span class="p">:</span>
+        <span class="n">check</span> <span class="o">=</span> <span class="n">check_input</span><span class="p">(</span><span class="n">add_url</span><span class="p">,</span> <span class="n">more_options</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">check</span> <span class="o">==</span> <span class="s2">&quot;mistake&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;The input is wrong!&quot;</span>
+    <span class="k">if</span> <span class="n">add_url</span> <span class="o">==</span> <span class="s1">&#39;information&#39;</span><span class="p">:</span>
+        <span class="n">full_url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">option</span><span class="p">)</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;/information?includeNutrition=true&quot;</span>
+    <span class="k">elif</span> <span class="n">add_url</span> <span class="o">==</span> <span class="s1">&#39;complexSearch&#39;</span><span class="p">:</span>
+        <span class="n">more_options</span> <span class="o">=</span> <span class="n">check</span>
+        <span class="n">default_values</span> <span class="o">=</span> <span class="n">default_information</span><span class="o">.</span><span class="n">DEFAULT_DICT_COMPLEX</span>
+        <span class="n">querystring</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">more_options</span><span class="p">)):</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">default_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">more_options</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">querystring</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">if</span> <span class="s2">&quot;includeIngredients&quot;</span> <span class="ow">in</span> <span class="n">querystring</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span>\
+                <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">querystring</span><span class="p">[</span><span class="s2">&quot;includeIngredients&quot;</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">str_include</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">querystring</span><span class="p">[</span><span class="s2">&quot;includeIngredients&quot;</span><span class="p">]:</span>
+                <span class="n">str_include</span> <span class="o">+=</span> <span class="n">item</span> <span class="o">+</span> <span class="s2">&quot;%2C &quot;</span>
+            <span class="n">str_include</span> <span class="o">=</span> <span class="n">str_include</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
+            <span class="n">querystring</span><span class="p">[</span><span class="s2">&quot;includeIngredients&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">str_include</span>
+        <span class="k">if</span> <span class="s2">&quot;excludeIngredients&quot;</span> <span class="ow">in</span> <span class="n">querystring</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span>\
+                <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">querystring</span><span class="p">[</span><span class="s2">&quot;excludeIngredients&quot;</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">str_exclude</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">querystring</span><span class="p">[</span><span class="s2">&quot;excludeIngredients&quot;</span><span class="p">]:</span>
+                <span class="n">str_exclude</span> <span class="o">+=</span> <span class="n">item</span> <span class="o">+</span> <span class="s2">&quot;%2C &quot;</span>
+            <span class="n">str_exclude</span> <span class="o">=</span> <span class="n">str_exclude</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
+            <span class="n">querystring</span><span class="p">[</span><span class="s2">&quot;excludeIngredients&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">str_exclude</span>
+        <span class="n">full_url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;complexSearch&quot;</span>
+    <span class="k">elif</span> <span class="n">add_url</span> <span class="o">==</span> <span class="s1">&#39;mealplans/generate&#39;</span><span class="p">:</span>
+        <span class="n">more_options</span> <span class="o">=</span> <span class="n">check</span>
+        <span class="n">default_values</span> <span class="o">=</span> <span class="n">default_information</span><span class="o">.</span><span class="n">DEFAULT_DICT_MEALS_VALUES</span>
+        <span class="n">querystring</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">more_options</span><span class="p">)):</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">default_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">more_options</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">querystring</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">if</span> <span class="s2">&quot;excludeIngredients&quot;</span> <span class="ow">in</span> <span class="n">querystring</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> \
+                <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">querystring</span><span class="p">[</span><span class="s2">&quot;excludeIngredients&quot;</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">str_exclude</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">querystring</span><span class="p">[</span><span class="s2">&quot;excludeIngredients&quot;</span><span class="p">]:</span>
+                <span class="n">str_exclude</span> <span class="o">+=</span> <span class="n">item</span> <span class="o">+</span> <span class="s2">&quot;%2C &quot;</span>
+            <span class="n">str_exclude</span> <span class="o">=</span> <span class="n">str_exclude</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
+            <span class="n">querystring</span><span class="p">[</span><span class="s2">&quot;excludeIngredients&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">str_exclude</span>
+        <span class="n">full_url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="n">add_url</span>
+
+    <span class="k">if</span> <span class="n">add_url</span> <span class="o">==</span> <span class="s2">&quot;information&quot;</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">full_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">full_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                                    <span class="n">params</span><span class="o">=</span><span class="n">querystring</span><span class="p">)</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="check_data"><a class="viewcode-back" href="../index.html#main_functions.check_data">[docs]</a><span class="k">def</span> <span class="nf">check_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    (dict) -&gt; str</span>
+
+<span class="sd">    Checks if the data from API is valid.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="k">return</span> <span class="s2">&quot;no data&quot;</span>
+    <span class="k">elif</span> <span class="n">data</span> <span class="o">==</span> <span class="n">errors</span><span class="o">.</span><span class="n">NO_RESULTS_COMPLEX</span> <span class="ow">or</span> \
+            <span class="n">data</span> <span class="o">==</span> <span class="n">errors</span><span class="o">.</span><span class="n">NO_RESULTS_MEALS</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;no such results&quot;</span>
+    <span class="k">elif</span> <span class="n">data</span> <span class="o">==</span> <span class="n">errors</span><span class="o">.</span><span class="n">BAD_REQUEST</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;bad request&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;information OK&quot;</span></div>
+
+
+<div class="viewcode-block" id="data_from_recipe_ids"><a class="viewcode-back" href="../index.html#main_functions.data_from_recipe_ids">[docs]</a><span class="k">def</span> <span class="nf">data_from_recipe_ids</span><span class="p">(</span><span class="n">recipes_data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    (DynamicArray) -&gt; list</span>
+
+<span class="sd">    Function that uses recipes&#39; ids to get</span>
+<span class="sd">    information for recipes&#39; analysis.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">recipes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">recipes_data</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">get_data_from_url</span><span class="p">(</span><span class="n">BASE_URL</span><span class="p">,</span> <span class="s1">&#39;information&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+        <span class="n">recipes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">recipes</span></div>
+
+
+<div class="viewcode-block" id="ingredients_table"><a class="viewcode-back" href="../index.html#main_functions.ingredients_table">[docs]</a><span class="k">def</span> <span class="nf">ingredients_table</span><span class="p">(</span><span class="n">recipes</span><span class="p">,</span> <span class="n">ingredients</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    (DynamicArray, DynamicArray) -&gt; Figure</span>
+
+<span class="sd">    Function that makes a table from the information</span>
+<span class="sd">    about the ingredients of the dishes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span><span class="n">header</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">recipes</span><span class="p">],</span> <span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;#B22222&#39;</span><span class="p">,</span>
+                                               <span class="n">fill_color</span><span class="o">=</span><span class="s2">&quot;#E9967A&quot;</span><span class="p">),</span>
+                                   <span class="n">cells</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="p">[[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">item</span><span class="p">]</span>
+                                                      <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">ingredients</span><span class="p">],</span>
+                                              <span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;#B22222&#39;</span><span class="p">,</span> <span class="n">fill_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">))])</span>
+    <span class="k">return</span> <span class="n">fig</span></div>
+
+
+<div class="viewcode-block" id="plot_nutrition"><a class="viewcode-back" href="../index.html#main_functions.plot_nutrition">[docs]</a><span class="k">def</span> <span class="nf">plot_nutrition</span><span class="p">(</span><span class="n">main_subs</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    (Array, str) -&gt; Figure</span>
+
+<span class="sd">    Function that makes bar chart from the</span>
+<span class="sd">    nutrition composition information.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data_to_pandas</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Percent of daily needs&quot;</span><span class="p">:</span> <span class="n">main_subs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">value</span><span class="p">:</span> <span class="n">main_subs</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
+    <span class="n">data_to_plot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_to_pandas</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Percent of daily needs&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">])</span>
+    <span class="n">data_plot</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">data_to_plot</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Percent of daily needs&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">value</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Percent of daily needs&quot;</span><span class="p">,</span>
+                       <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data_plot</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Recipe Selector and Analyzer</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Khristina Kokolus.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
