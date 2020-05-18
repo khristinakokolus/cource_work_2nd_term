@@ -12,6 +12,15 @@ There are a lot of recipes but to find one that is really great is hard. Recipe 
 
 ## Table of contents:
 
+-[Input/Output data](#Input/Output data)
+-[Program Structure](#Program Structure)
+-[Prerequisities](#Prerequisities)
+-[Installation](#Installation)
+-[Usage example](#Usage example)
+-[Contributing](#Contributing)
+-[Credit](#Credit)
+-[Licence](#Licence)
+
 ## Input/Output data
 
 The input data for the Complex Search: main ingredient, ingredients to include and to exclude, cuisine, diet, dish type, the number of recipes to output. It is ESSENTIAL to input the main ingredient and number of recipes, but other input is optional.
@@ -62,6 +71,30 @@ To use you need only:
 Then you shound run wsgi.py to see the work of the program.
 
 ## Usage example:
+
+After following the link of the site you will see:
+
+
+After that you can choose Complex Search or Meal Generator
+
+If you chose Complex Search, you will see:
+
+
+Here is example of search query:
+
+
+Example of output data:
+
+
+If you chose Meal Generator, you will see:
+
+
+Here is example of search query:
+
+
+Example of output data:
+
+
 
 ## Contributing:
 
