@@ -36,7 +36,7 @@ class Array:
         return self._elements[index]
 
     def __setitem__(self, index, value):
-        """(Array, int, str)
+        """(Array, int, value)
 
         Puts the value in the array element at index position.
         """
@@ -45,7 +45,7 @@ class Array:
         self._elements[index] = value
 
     def clear(self, value):
-        """(Array, str)
+        """(Array, value)
 
         Clears the array by setting each element
         to the given value.
@@ -54,7 +54,7 @@ class Array:
             self._elements[i] = value
 
     def __iter__(self):
-        """(Array)
+        """(Array) -> _ArrayIterator
 
         Returns the array's iterator for traversing
         the elements.
@@ -62,7 +62,8 @@ class Array:
         return _ArrayIterator(self._elements)
 
     def __str__(self):
-        """(Array)
+        """(Array) -> str
+
         Returns the printable representation of array.
         """
         str_array = "["
@@ -83,16 +84,16 @@ class _ArrayIterator:
         self._cur_index = 0
 
     def __iter__(self):
-        """(_ArrayIterator)
+        """(_ArrayIterator) -> _ArrayIterator
 
-        The iterator.
+        Returns the iterator.
         """
         return self
 
     def __next__(self):
         """(_ArrayIterator)
 
-        The next value of iteration.
+        Returns the next value of iteration.
         """
         if self._cur_index < len(self._array):
             entry = self._array[self._cur_index]
@@ -113,14 +114,14 @@ class DynamicArray:
         self._array = self._make_array(self._capacity)
 
     def __len__(self):
-        """(DynamicArray)
+        """(DynamicArray) -> int
 
         Returns number of elements stored in the array.
         """
         return self._num_elements
 
     def __getitem__(self, index):
-        """(DynamicArray, int)
+        """(DynamicArray, int) -> value
 
         Returns element at index.
         """
@@ -174,6 +175,7 @@ class DynamicArray:
 
     def __str__(self):
         """(DynamicArray) -> str
+
         Returns printable representation of DynamicArray.
         """
         str_dynamic_array = "["
