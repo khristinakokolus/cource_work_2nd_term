@@ -12,9 +12,9 @@ There are a lot of recipes but to find one that is really great is hard. Recipe 
 
 ## Table of contents:
 
-* [Input/Output data](#Input/Output data)
+* [Input/Output data](#Data)
 
-* [Program Structure](#ProgramStructure)
+* [Program Structure](#Structure)
 
 * [Installation](#Installation)
 
@@ -26,7 +26,7 @@ There are a lot of recipes but to find one that is really great is hard. Recipe 
 
 * [Licence](#Licence)
 
-## Input/Output data
+## Input/Output Data
 
 The input data for the Complex Search: main ingredient, ingredients to include and to exclude, cuisine, diet, dish type, the number of recipes to output. It is ESSENTIAL to input the main ingredient and number of recipes, but other input is optional.
 
