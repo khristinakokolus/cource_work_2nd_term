@@ -26,7 +26,7 @@ There are a lot of recipes but to find one that is really great is hard. Recipe 
 
 * [Licence](#Licence)
 
-## Input/Output
+## Input/Output data
 
 The input data for the Complex Search: main ingredient, ingredients to include and to exclude, cuisine, diet, dish type, the number of recipes to output. It is ESSENTIAL to input the main ingredient and number of recipes, but other input is optional.
 
@@ -50,7 +50,7 @@ The output data of the Recipe Selector and Analyzer for Complex Search and Meal 
 
 If user uses Meal Generator, there is also displayed the pie chart with the the comparison of fats, carbohydrates and protein in dishes per day.
 
-## Structure
+## Program structure
 
 Program consists of such modules as:
 * arrays.py - contains needed data structures for the investigation. They are Array and Dynamic Array that are needed to for the ADT implementation.
@@ -157,3 +157,4 @@ Please refer to project's style and contribution guidelines for submitting patch
 
 ## License:
 
+[MIT LICENSE](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/LICENSE)
