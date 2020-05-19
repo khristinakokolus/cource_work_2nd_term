@@ -162,7 +162,7 @@ Please refer to project's style and contribution guidelines for submitting patch
 5.Submit a Pull request so that we can review your changes
 
 ## Credit:
-- Khrystyna Kokolus, Ukrainian Catholic University
+- Khrystyna Kokolus, Ukrainian Catholic University, 2020
 
 ## License:
 
