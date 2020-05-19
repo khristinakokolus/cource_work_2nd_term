@@ -14,9 +14,9 @@ There are a lot of recipes but to find one that is really great is hard. Recipe 
 
 ## Table of contents:
 
-* [Input/Output](#Input/Output)
+* [Input/Output](#Input/Output-data)
 
-* [Program Structure](#Structure)
+* [Program Structure](#Program-Structure)
 
 * [Installation](#Installation)
 
