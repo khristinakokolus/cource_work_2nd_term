@@ -15,7 +15,7 @@ class RecipeSearch:
     def __init__(self, query, data):
         """(RecipeSearch, str, str)
 
-        Represents recipes info.
+        Represents recipes information.
         """
         self.data = data
         self.query = query
@@ -47,7 +47,7 @@ class RecipeSearch:
         """(RecipeSearch) -> DynamicArray
 
         Returns the array with the
-        recipe names.
+        recipes' names.
         """
         recipe_names = DynamicArray()
         for recipe in self._recipes:
@@ -59,7 +59,7 @@ class RecipeSearch:
         """(RecipeSearch) -> DynamicArray
 
         Returns the array with the
-        recipe id numbers.
+        recipes' id numbers.
         """
         recipe_ids = DynamicArray()
         for recipe in self._recipes:
