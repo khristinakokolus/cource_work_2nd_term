@@ -9,6 +9,7 @@ Link for the web application: [Recipe Selector and Analyzer](http://recipeanalys
 ## Description:
 
 There are a lot of recipes but to find one that is really great is hard. Recipe Selector and Analyzer is created to solve this problem. It gives a great opportunity to find the dreamed recipe. There are a lot of recipes in the google but there is information only from what and how to cook the dish, but Recipe Selector and Analyzer can help to find different recipes and to get the full information about them. To search the recipes you can use two oprions: Complex Search and Meal Generator. Complex search is a search that helps to find recipes based on the user's wishes. Meal Generator is used to generate recipes for the day.
+
 The information that user can get:
 * comparison characteristics of the selected recipes;
 * needed ingredients to cook the portion of all dishes;
