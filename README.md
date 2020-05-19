@@ -16,17 +16,15 @@ There are a lot of recipes but to find one that is really great is hard. Recipe 
 
 * [Program Structure](#ProgramStructure)
 
-* [Prerequisities](#Prerequisities)
+* [Installation](#Installation)
 
--[Installation](#Installation)
+* [Usage example](#Usageexample)
 
--[Usage example](#Usageexample)
+* [Contributing](#Contributing)
 
--[Contributing](#Contributing)
+* [Credit](#Credit)
 
--[Credit](#Credit)
-
--[Licence](#Licence)
+* [Licence](#Licence)
 
 ## Input/Output data
 
@@ -54,9 +52,25 @@ If user uses Meal Generator, there is also displayed the pie chart with the the 
 
 ## Program Structure
 
+Program consists of such modules as:
+* arrays.py - contains needed data structures for the investigation. They are Array and Dynamic Array that are needed to for the ADT implementation.
+* recipe_search_adt.py - contains needed RecipeSearch ADT. This ADT is used to get the information about recipes' names and ids.RecipeSearch ADT also helps to select the recies in a random way.
+* recipe_data_adt.py - contains needed ADT SecipeData ADT. This ADT is used as a cintainer of the main information about selected recipes and used to obtain the information needed for analysis.
+* default_information - consists of the needed default information for the investigation such as list of needed diets, dish types, cuisines, etc.
+* errors.py - there are dictionaries what returns API if it is a bad request. This module is used to define whether there are results for different user inputs.
+* main_functions.py - consists of the functions that are needed to get the information using API, there are functions to check the if user's input is valid and if the information from the Internet is not in errors.py. also, there are needed functions to plot the data for both Complex Search and Meal Generator.
+* complex_dashboard - contains the main function to get the information for the Complex Search and also there is Dash layout that is responsible for the output results of the data analysis for Complex Search.
+* meal_gen_dashboard - contains of the function to plot the needed data for the Meal Generator and also there is Dash layout that is responsible for the output results of the data analysis for Meal Genarator.
+* flask_app.py - contains of hree functions to create three main pages of the app: home, Complex Search and Meal Generator.
+* wsgi.py - is responsible for the transition between the flask pages and dash pages.
 
-## Prerequisities
-If you want to run the program locally you need install such libraries:
+If you want to know more just have a look at the documentation page, that consistsof the all neede information about main classes and functions. 
+
+## Installation:
+
+### Prerequisities:
+
+If you want to run the program locally you need firstly to install such libraries:
 
 `pip install requests`
 
@@ -70,8 +84,7 @@ If you want to run the program locally you need install such libraries:
 
 Also you need to get an API key on [Rapid API](https://rapidapi.com/spoonacular/api/recipe-food-nutrition)
 
-## Installation:
-To use you need only:
+Then you need only:
 
 `git clone https://github.com/khristinakokolus/cource_work_2nd_term.git`
 
