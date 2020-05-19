@@ -12,15 +12,15 @@ There are a lot of recipes but to find one that is really great is hard. Recipe 
 
 ## Table of contents:
 
--[Input/Output data](#Input/Output data)
+-[Input/Output data](#Input/Outputdata)
 
--[Program Structure](#Program Structure)
+-[Program Structure](#ProgramStructure)
 
 -[Prerequisities](#Prerequisities)
 
 -[Installation](#Installation)
 
--[Usage example](#Usage example)
+-[Usage example](#Usageexample)
 
 -[Contributing](#Contributing)
 
