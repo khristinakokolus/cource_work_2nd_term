@@ -68,7 +68,7 @@ Program consists of such modules as:
 * [complex_dashboard](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/modules/complex_dashboard.py) - consists of the main function to get the information for the Complex Search and also there is Dash layout that is responsible for the output results of the data analysis for Complex Search option.
 * [meal_gen_dashboard](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/modules/meal_gen_dashboard.py) - contains of the function to plot the needed data for the Meal Generator and also there is Dash layout that is responsible for the output results of the data analysis for Meal Genarator option.
 * [flask_app.py](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/modules/flask_app.py) - contains of three functions to create three main pages of the app: Home, Complex Search and Meal Generator.
-* [wsgi.py](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/modules/wsgi.py) - is responsible for the transition between the flask pages and dash pages.
+* [wsgi.py](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/modules/wsgi.py) - the main function that runs the program and is responsible for the transition between the flask pages and dash pages.
 
 If you want to know more just have a look at the documentation page, that consists of the all needeed information about main classes and functions. 
 
@@ -110,7 +110,7 @@ If you chose Complex Search, you will see:
 
 ![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/complex.png)
 
-Here is example of search query:
+Here is an example of search query:
 
 ![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/complexsearch.png)
 
@@ -130,7 +130,7 @@ If you chose Meal Generator, you will see:
 
 ![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/meal_gen.png)
 
-Here is example of search query:
+Here is an example of search query:
 
 ![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/mealgenerator.png)
 
