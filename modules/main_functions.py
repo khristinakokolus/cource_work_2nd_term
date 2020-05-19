@@ -21,7 +21,7 @@ def check_input(add_url, more_options):
 
     Checks the input of the user.
     """
-    if add_url == default_information.DEFAULT_COMPLEX_URL:
+    if add_url == modules.default_information.DEFAULT_COMPLEX_URL:
         if "," in more_options[0]:
             return "mistake"
         elif more_options[3] is not None and len(more_options[3].split()) > 1:
@@ -29,7 +29,7 @@ def check_input(add_url, more_options):
         elif more_options[4] is not None and len(more_options[4].split()) > 1:
             more_options[4] = more_options[4].split()
         return more_options
-    elif add_url == default_information.DEFAULT_MEAL_PLANNER_URL:
+    elif add_url == modules.default_information.DEFAULT_MEAL_PLANNER_URL:
         if more_options[1] is not None:
             if int(more_options[1]) > 4000 or int(more_options[1]) < 500:
                 return "mistake"
@@ -52,7 +52,7 @@ def get_data_from_url(base_url, add_url, option, more_options=None):
         full_url = base_url + str(option) + f"/information?includeNutrition=true"
     elif add_url == 'complexSearch':
         more_options = check
-        default_values = default_information.DEFAULT_DICT_COMPLEX
+        default_values = modules.default_information.DEFAULT_DICT_COMPLEX
         querystring = {}
         for i in range(len(more_options)):
             key = default_values[i]
@@ -76,7 +76,7 @@ def get_data_from_url(base_url, add_url, option, more_options=None):
         full_url = base_url + "complexSearch"
     elif add_url == 'mealplans/generate':
         more_options = check
-        default_values = default_information.DEFAULT_DICT_MEALS_VALUES
+        default_values = modules.default_information.DEFAULT_DICT_MEALS_VALUES
         querystring = {}
         for i in range(len(more_options)):
             key = default_values[i]
@@ -110,10 +110,10 @@ def check_data(data):
     """
     if data == []:
         return "no data"
-    elif data == errors.NO_RESULTS_COMPLEX or \
-            data == errors.NO_RESULTS_MEALS:
+    elif data == modules.errors.NO_RESULTS_COMPLEX or \
+            data == modules.errors.NO_RESULTS_MEALS:
         return "no such results"
-    elif data == errors.BAD_REQUEST:
+    elif data == modules.errors.BAD_REQUEST:
         return "bad request"
     else:
         return "information OK"
