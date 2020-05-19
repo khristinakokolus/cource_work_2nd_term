@@ -9,7 +9,7 @@ from modules.flask_app import flask_app
 
 application = DispatcherMiddleware(flask_app, {
     '/complex': app1.server,
-    '/mealgenerating': app2.server,
+    '/mealgenerator': app2.server,
 })
 
 if __name__ == '__main__':
