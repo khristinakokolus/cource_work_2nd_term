@@ -193,7 +193,7 @@ def update_meal_generating(calories, diet, exclude, click, tab):
                 modules.default_information.MAIN_NUTRIENTS, i)
             other_substances_analysis = recipe_advanced_data.other_nutrients_percents(
                 modules.default_information.MAIN_NUTRIENTS, i)
-            output.append(html.H1(f"{recipes[i]} recipe nutrition",
+            output.append(html.H1(f"{recipes[i]} nutrient composition for one serving",
                                   style={'textAlign': 'center', "color": "#8B0000"}))
             output.append(dcc.Graph(id='main-graph', figure=modules.main_functions.
                                     plot_nutrition(main_substances_analysis,
