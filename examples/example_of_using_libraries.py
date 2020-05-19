@@ -44,21 +44,18 @@ def data_analysis(data):
     info_lst = []
     lst_vitamines = []
     lst_amounts = []
-    for key in data_js.keys():
-        if key == 'title':
-            title = data_js[key]
-            info_lst.append(title)
-        elif key == 'nutrition':
-            for nutrients in data_js['nutrition']['nutrients']:
-                for key_nut in nutrients.keys():
-                    if key_nut == "title" and \
-                            nutrients['unit'] == 'mg':
-                        title_value = nutrients[key_nut]
-                        lst_vitamines.append(title_value)
-                    elif key_nut == "amount" and \
-                            nutrients['unit'] == 'mg':
-                        value = nutrients[key_nut]
-                        lst_amounts.append(value)
+    title = data_js['title']
+    info_lst.append(title)
+    for nutrients in data_js['nutrition']['nutrients']:
+        for key_nut in nutrients.keys():
+            if key_nut == "title" and \
+                    nutrients['unit'] == 'mg':
+                title_value = nutrients[key_nut]
+                lst_vitamines.append(title_value)
+            elif key_nut == "amount" and \
+                    nutrients['unit'] == 'mg':
+                value = nutrients[key_nut]
+                lst_amounts.append(value)
     info_lst.append(lst_vitamines)
     info_lst.append(lst_amounts)
     return info_lst
