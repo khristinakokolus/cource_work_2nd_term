@@ -6,7 +6,7 @@ import requests
 # recipes_example.json, complex_example.json
 # are the examples of function calls with different parameters
 # to get more information about them and their use to call the function
-# visit https://spoonacular.com/food-api/docs
+# visit https://rapidapi.com/spoonacular/api/recipe-food-nutrition
 
 
 BASE_URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
