@@ -71,7 +71,7 @@ Program consists of such modules as:
 
 If you want to know more just have a look at the documentation page, that consists of the all needeed information about main classes and functions. 
 
-Link for the page: [documentation](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/docs/build/html/index.html)
+Link for the documentation folder: [docs](https://github.com/khristinakokolus/cource_work_2nd_term/tree/master/docs)
 
 ## Installation:
 
