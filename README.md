@@ -14,7 +14,7 @@ There are a lot of recipes but to find one that is really great is hard. Recipe 
 
 * [Input/Output](#Input/Output)
 
-* [Program Structure](#structure)
+* [Program Structure](#Program)
 
 * [Installation](#Installation)
 
@@ -50,7 +50,7 @@ The output data of the Recipe Selector and Analyzer for Complex Search and Meal 
 
 If user uses Meal Generator, there is also displayed the pie chart with the the comparison of fats, carbohydrates and protein in dishes per day.
 
-## Program Structure
+## Program
 
 Program consists of such modules as:
 * arrays.py - contains needed data structures for the investigation. They are Array and Dynamic Array that are needed to for the ADT implementation.
