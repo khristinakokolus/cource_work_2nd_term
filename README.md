@@ -12,11 +12,11 @@ There are a lot of recipes but to find one that is really great is hard. Recipe 
 
 ## Table of contents:
 
--[Input/Output data](#Input/Outputdata)
+* [Input/Output data](#Input/Output data)
 
--[Program Structure](#ProgramStructure)
+* [Program Structure](#ProgramStructure)
 
--[Prerequisities](#Prerequisities)
+* [Prerequisities](#Prerequisities)
 
 -[Installation](#Installation)
 
