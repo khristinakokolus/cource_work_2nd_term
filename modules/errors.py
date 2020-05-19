@@ -20,6 +20,6 @@ NO_RESULTS_MEALS = {
 NO_RESULTS_COMPLEX = {
     "results": [],
     "offset": 0,
-    "number": 50,
+    "number": 100,
     "totalResults": 0
 }
