@@ -5,7 +5,6 @@ import dash_core_components as dcc
 from dash.dependencies import Input, Output
 import plotly.graph_objects as go
 import modules.default_information
-import modules.errors
 import modules.main_functions
 from modules.recipe_search_adt import RecipeSearch
 from modules.recipe_data_adt import RecipeData
