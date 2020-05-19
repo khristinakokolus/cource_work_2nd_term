@@ -19,7 +19,7 @@ class RecipeData:
     def add_data(self, main_information):
         """(RecipeData, list)
 
-        Adds the all needed information about
+        Adds all needed information about
         all the recipes.
         """
         for i in range(len(self.data)):
@@ -31,9 +31,9 @@ class RecipeData:
             self._ingredients.append(ingredients)
 
     def recipe_nutrition(self, index):
-        """(RecipeData, int)
+        """(RecipeData, int) -> DynamicArray
 
-        Gets nutrition of the one recipe.
+        Gets nutrition information of the one recipe.
         """
         temp_array = DynamicArray()
         for nutrients in self.data[index]['nutrition']['nutrients']:
@@ -46,7 +46,7 @@ class RecipeData:
         return temp_array
 
     def recipes_main_information(self, main_info, index):
-        """(RecipeData, list, int)
+        """(RecipeData, list, int) -> DynamicArray
 
         Gets the main needed information about one recipe.
         """
@@ -58,9 +58,9 @@ class RecipeData:
         return temp_array
 
     def get_ingredients(self, index):
-        """(RecipeData, int)
+        """(RecipeData, int) -> DynamicArray
 
-        Gets the ingredients of recipes.
+        Gets the information about the ingredients of recipes.
         """
         temp_array = DynamicArray()
         data = self.data[index]['nutrition']['ingredients']
@@ -85,15 +85,15 @@ class RecipeData:
         """(RecipeData) -> DynamicArray
 
         Returns the array of the names
-        of recipes.
+        of all recipes.
         """
         return self._recipes
 
     def healthiness(self):
         """(RecipeData) -> Array
 
-        Returns the array of values healthy or not healthy
-        that correspond to the recipes.
+        Returns the array with values of the healthiness
+        of all recipes.
         """
         healthy_array = Array(self._arr_size)
         k = 0
@@ -109,8 +109,8 @@ class RecipeData:
     def cheap(self):
         """(RecipeData) -> Array
 
-        Returns the array of values cheap or not cheap
-        of all recipes.
+        Returns the array with values cheap or not cheap
+        to cook a certain dish.
         """
         cheap_array = Array(self._arr_size)
         k = 0
@@ -126,7 +126,7 @@ class RecipeData:
     def is_popular(self):
         """(RecipeData) -> Array
 
-        Returns the array of values popular or not popular
+        Returns the array with values of popularity
         of all recipes.
         """
         popularity_array = Array(self._arr_size)
@@ -143,7 +143,7 @@ class RecipeData:
     def healthy_score(self):
         """(RecipeData) -> Array
 
-        Returns the array of values of health score
+        Returns the array with values of health score
         of all recipes.
         """
         healthy_array = Array(self._arr_size)
@@ -156,7 +156,7 @@ class RecipeData:
     def time_cooking(self):
         """(RecipeData) -> Array
 
-        Returns the array of values of cooking time
+        Returns the array with values of cooking time
         of all recipes.
         """
         time_array = Array(self._arr_size)
@@ -234,8 +234,8 @@ class RecipeData:
     def calories(self):
         """(RecipeData) -> Array
 
-        Returns the array of the calories amount
-        of all recipes.
+        Returns the array with the numbers of calories in
+        all recipes.
         """
         calories_array = Array(self._arr_size)
         k = 0
@@ -260,9 +260,10 @@ class RecipeData:
     def main_nutrients_percents(self, main_nutrients, index):
         """(RecipeData, list, int) -> Array
 
-        Returns the array of two arrays that consist
+        Returns the array of two arrays. First consists
         of the names of main nutrients with amounts
-        and the percents of daily needs.
+        and second consists of the percents of daily needs
+        of those nutrients.
         """
         information = Array(2)
         length = self.count_main_nutrients(main_nutrients, index)
@@ -288,9 +289,10 @@ class RecipeData:
     def other_nutrients_percents(self, main_nutrients, index):
         """(RecipeData, list, int) -> Array
 
-        Returns the array of two arrays that consist
+        Returns the array of two arrays. First consists
         of the names of vitamins, minerals, etc with amounts
-        and the percents of daily needs.
+        and second consists of the percents of daily needs
+        of those vitamins and minerals.
         """
         information_other = Array(2)
         length = len(self._nutrients[index]) - 1 -\
