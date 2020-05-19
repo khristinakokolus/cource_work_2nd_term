@@ -18,16 +18,16 @@ def recipes_complex_data(data, number):
     Function that gets needed information and
     returns one for the further analysis.
     """
-    recipes_complex = RecipeSearch(default_information.DEFAULT_COMPLEX_URL, data)
+    recipes_complex = RecipeSearch(modules.default_information.DEFAULT_COMPLEX_URL, data)
     recipes_complex.get_recipes()
     if len(recipes_complex.recipe_names()) > number:
         recipes_complex.recipe_selector(number)
     recipes_names = recipes_complex.recipe_names()
     recipes_ids = recipes_complex.recipe_ids()
     amount_recipes = recipes_complex.amount_of_recipes()
-    new_data = main_functions.data_from_recipe_ids(recipes_ids)
+    new_data = modules.main_functions.data_from_recipe_ids(recipes_ids)
     recipe_advanced_data = RecipeData(new_data, recipes_names, amount_recipes)
-    recipe_advanced_data.add_data(default_information.DEFAULT_MAIN_INFO)
+    recipe_advanced_data.add_data(modules.default_information.DEFAULT_MAIN_INFO)
     return recipe_advanced_data
 
 
@@ -99,7 +99,7 @@ app.layout = html.Div([
         html.Div([
             dcc.Dropdown(
                 id="cuisine",
-                options=[{"label": i, "value": i} for i in default_information.CUISINES],
+                options=[{"label": i, "value": i} for i in modules.default_information.CUISINES],
                 placeholder="Select cuisine...",
                 style={'width': '220px', 'font-size': '90%', 'height': '40px',
                        "align-items": "center",
@@ -107,13 +107,13 @@ app.layout = html.Div([
             ),
             dcc.Dropdown(
                 id="diet",
-                options=[{"label": i, "value": i} for i in default_information.DIETS],
+                options=[{"label": i, "value": i} for i in modules.default_information.DIETS],
                 placeholder="Select Diet...",
                 style={'width': '220px', 'font-size': '90%', 'height': '40px'},
             ),
             dcc.Dropdown(
                 id="dish type",
-                options=[{"label": i, "value": i} for i in default_information.DISH_TYPE],
+                options=[{"label": i, "value": i} for i in modules.default_information.DISH_TYPE],
                 placeholder="Select Dish Type...",
                 style={'width': '220px', 'font-size': '90%', 'height': '40px'},
             ),
@@ -198,8 +198,8 @@ def update_state(ingredient, include, exclude, cuisine, diet, dish_type, amount,
             if exclude is not None:
                 exclude = exclude.replace(",", "")
             more_options_complex = [ingredient, cuisine, diet, include, exclude, dish_type, "100"]
-            data = main_functions.get_data_from_url(main_functions.BASE_URL,
-                                                    default_information.DEFAULT_COMPLEX_URL,
+            data = modules.main_functions.get_data_from_url(modules.main_functions.BASE_URL,
+                                                    modules.default_information.DEFAULT_COMPLEX_URL,
                                                     option, more_options_complex)
             if data == "The input is wrong!":
                 return html.Div([html.H3("SOME OF YOUR INPUT VALUES ARE WRONG! TRY AGAIN!",
@@ -208,7 +208,7 @@ def update_state(ingredient, include, exclude, cuisine, diet, dish_type, amount,
                                                 "font-size": "50px", "font-weight": "normal",
                                                 "line-height": "54px", "margin": "0 0 54px"})])
 
-            check = main_functions.check_data(data)
+            check = modules.main_functions.check_data(data)
             if check == "no data" or check == "no such results":
                 return html.Div([html.H3("THERE ARE NO RESULTS FOR SUCH REQUEST",
                                          style={'textAlign': 'center', "color": "#B22222",
@@ -252,7 +252,7 @@ def update_state(ingredient, include, exclude, cuisine, diet, dish_type, amount,
                               style={'textAlign': 'center', "color": "#B22222", "font-family": 'Bitter',
                                      "font-weight": "normal", "font-size": "50px"}))
             ingredients = recipes_complex.ingredients()
-            output.append(dcc.Graph(id='main-info-graph', figure=main_functions.
+            output.append(dcc.Graph(id='main-info-graph', figure=modules.main_functions.
                                     ingredients_table(diff_recipe, ingredients)))
             output.append(html.H1("ANALYSIS OF THE NUTRITION OF THE DISHES",
                               style={'textAlign': 'center', "color": "#B22222",
@@ -262,16 +262,16 @@ def update_state(ingredient, include, exclude, cuisine, diet, dish_type, amount,
                                      "margin": "0 0 54px"}))
             for i in range(len(diff_recipe)):
                 main_substances_analysis = recipes_complex.main_nutrients_percents(
-                    default_information.MAIN_NUTRIENTS, i)
+                    modules.default_information.MAIN_NUTRIENTS, i)
                 other_substances_analysis = recipes_complex.other_nutrients_percents(
-                    default_information.MAIN_NUTRIENTS, i)
+                    modules.default_information.MAIN_NUTRIENTS, i)
                 output.append(html.H1(f"{diff_recipe[i]} nutrient composition",
                                   style={'textAlign': 'center', "color": "#8B0000"}))
-                output.append(dcc.Graph(id='main-graph', figure=main_functions.
+                output.append(dcc.Graph(id='main-graph', figure=modules.main_functions.
                                         plot_nutrition(main_substances_analysis,
                                                        "Main nutrients")))
 
-                output.append(dcc.Graph(id='other-graph',figure=main_functions.
+                output.append(dcc.Graph(id='other-graph',figure=modules.main_functions.
                                         plot_nutrition(other_substances_analysis,
                                                        "Vitamins, minerals, etc.")))
             res_url = recipes_complex.get_recipe_urls()
