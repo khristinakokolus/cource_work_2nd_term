@@ -265,7 +265,7 @@ def update_state(ingredient, include, exclude, cuisine, diet, dish_type, amount,
                     modules.default_information.MAIN_NUTRIENTS, i)
                 other_substances_analysis = recipes_complex.other_nutrients_percents(
                     modules.default_information.MAIN_NUTRIENTS, i)
-                output.append(html.H1(f"{diff_recipe[i]} nutrient composition",
+                output.append(html.H1(f"{diff_recipe[i]} nutrient composition for one serving",
                                   style={'textAlign': 'center', "color": "#8B0000"}))
                 output.append(dcc.Graph(id='main-graph', figure=modules.main_functions.
                                         plot_nutrition(main_substances_analysis,
