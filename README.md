@@ -139,6 +139,7 @@ Example of output data:
 ![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/meal6.png)
 ![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/meal7.png)
 ![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/meal8.png)
+![](https://github.com/khristinakokolus/cource_work_2nd_term/blob/master/screens/meal9.png)
 
 ## Contributing:
 
