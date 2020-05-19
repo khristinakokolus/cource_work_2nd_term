@@ -4,6 +4,8 @@ Welcome to Recipe Selector and Analyzer!
 
 This web app is already hosted on pythonanywhere.com
 
+Video presentation of the project: [Recipe Selector and Analyzer preview](hhttps://www.youtube.com/watch?v=dhsA0brg_2o)
+
 Check it now [Recipe Selector and Analyzer](http://recipeanalyser.pythonanywhere.com/)
 
 ## Description:
