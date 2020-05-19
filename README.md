@@ -154,5 +154,6 @@ Please refer to project's style and contribution guidelines for submitting patch
 
 ## Credit:
 - Khrystyna Kokolus, Ukrainian Catholic University
-## Licence:
+
+## License:
 
