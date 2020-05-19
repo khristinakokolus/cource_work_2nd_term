@@ -7,7 +7,6 @@ import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
 import modules.default_information
-import modules.errors
 import modules.main_functions
 from modules.recipe_search_adt import RecipeSearch
 from modules.recipe_data_adt import RecipeData
